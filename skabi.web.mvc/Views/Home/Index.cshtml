@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@section AddToHead{
+    <link href="@Url.Content("~/Content/start.css")" rel="stylesheet" type="text/css" />
+}
+<div id="content">
+    <div id="column_left">
+        @*@Html.Partial("NewsPartial")*@
+        @Html.Action("Latest", "News")
+    </div>
+    <div id="column_right">
+        <div id="container_slideshow" class="slideshowContainer">
+            <img src="img/slideshow/three.jpg" alt="" />
+        </div>
+    </div>
+    <div style="clear: both;">
+    </div>
+    @Html.Action("GetLatestProposals", "Proposals")
+    <div style="clear: both;">
+    </div>
+</div>

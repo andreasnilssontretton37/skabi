@@ -1,0 +1,36 @@
+﻿@model skabi.web.mvc.Models.news
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <fieldset>
+        <legend>news</legend>
+    
+        <div class="display-label">date</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.date)
+        </div>
+    
+        <div class="display-label">text</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.text)
+        </div>
+    </fieldset>
+    @using (Html.BeginForm()) {
+        <p>
+            <input type="submit" value="Delete" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    }
+
+</body>
+</html>

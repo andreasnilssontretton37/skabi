@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="se">
+<head>
+    <title>SKÅBI - Skåne Bilinredningar AB - Vi inreder och utrustar servicebilar -Allt
+        efter dina önskemål!</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link href="@Url.Content("~/Content/general.css")" rel="stylesheet" type="text/css" />
+
+    @if (IsSectionDefined("AddToHead"))
+    {
+        @RenderSection("AddToHead", false)
+    }
+    
+
+</head>
+<body id="top">
+    <div id="container_main">
+        <div id="container_header">
+            <ul id="navbar">
+                <li id="nav_start_selected" class="nav_start"><a href="http://www.skane-bilinredningar.se">
+                </a></li>
+                <li id="nav_company" class="nav_company"><a href="foretaget"></a></li>
+                <li id="nav_products" class="nav_products"><a href="produkter"></a></li>
+                <li id="nav_proposals" class="nav_proposals"><a href="forslag"></a></li>
+                <li id="nav_gallery" class="nav_gallery"><a href="galleri"></a></li>
+                <li id="nav_contact" class="nav_contact"><a href="kontakt"></a></li>
+            </ul>
+        </div>
+        <div id="container_content">
+            @RenderBody()
+            <div id="content_footer">
+                Skåne Bilinredningar AB &nbsp &nbsp | &nbsp &nbsp Tfn: 046 - 24 62 20 &nbsp; &nbsp;
+                | &nbsp; &nbsp; Tfx: 046 - 24 62 06 &nbsp; &nbsp; | &nbsp; &nbsp; @*<a href="javascript:;"
+                    id="btn_login">Login</a>
+                <div id="loginBox">
+                    <form id="loginForm" method="post" action="login.php" style="display: inline;">
+                    <input type="text" id="user" class="border" size="15" />
+                    <input type="password" id="pass" class="border" size="15" />
+                    </form>
+                </div>*@
+                @Html.Partial("_LogOnPartial")
+            </div>
+        </div>
+        <div id="footer">
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="@Url.Content("~/scripts/jquery-1.7.1.min.js")/"></script>	
+    <script type="text/javascript" src="@Url.Content("~/scripts/jquery-ui-1.8.17.js")/"></script>	
+    <script type="text/javascript" src="@Url.Content("~/scripts/general.js")"  ></script>
+    @RenderSection("JavaScript", required: false)
+
+</body>
+</html>

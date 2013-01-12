@@ -1,0 +1,22 @@
+﻿@model skabi.web.mvc.Models.LogOnModel
+
+@if(Request.IsAuthenticated) {
+    <text>Welcome <strong>@User.Identity.Name</strong>!
+    [ @Html.ActionLink("Log Off", "LogOff", "Account") ]</text>
+}
+else {
+    //@:[ @Html.ActionLink("Log On", "LogOn", "Account") ]
+    <a href="javascript:;" id="btn_login">Login</a>
+    
+
+}
+
+<div id="loginBox">
+    @using (Html.BeginForm("LogOn", "Account", FormMethod.Post))
+    {
+        @Html.TextBoxFor(m => m.UserName)
+        @Html.TextBoxFor(m => m.Password)
+        <input type="submit" value="Log In" />
+
+    }
+</div>

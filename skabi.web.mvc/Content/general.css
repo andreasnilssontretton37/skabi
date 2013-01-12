@@ -1,0 +1,188 @@
+	html
+	{
+		height: 100%;
+	}
+
+	body	
+	{
+		font-family: arial;
+		font-size: 10pt;
+		height: 100%;
+		margin-top: 0px;
+		background-image: url('../img/site/bg_x.png');
+		background-repeat: repeat-x;
+		background-position: top;
+		background-color: #ccc;
+		color: #666;
+		text-align: center;
+	}
+	
+	p, img, div, a
+	{
+		padding: 0px;
+		margin: 0px;
+		border: none;
+		outline: none;
+	}
+
+	
+	a
+	{
+		font-family: arial;
+		font-size: 10pt;
+		color: #999;
+	}
+
+	#container_main
+	{
+		margin-top: 0px;
+		margin-right:auto;
+		margin-left:auto;
+		text-align: left;
+		width: 909px;
+	}
+	
+	#container_header
+	{
+		background-image: url('../img/site/bg_header.png');
+		width: 909px;
+		height: 198px;
+	}
+	
+	
+	
+	#navbar
+	{
+		width: 480px;
+		height: 27px;
+		margin-top: 171px;
+		margin-left: 25px;
+		position: absolute;
+		padding: 0;
+	}
+
+	#navbar ul 
+	{
+		margin: 0 0 0 0px;
+		padding: 0;
+	}
+
+	
+	#navbar li 
+	{
+		display: inline;
+	}
+
+	
+	#navbar a
+	{
+		float: left;
+		height: 27px;
+		background-repeat: no-repeat;
+		line-height: 27px
+		text-decoration: none;
+	}
+	
+	
+	.nav_start a
+	{
+		background: url('../img/site/menu/start.png');
+		width: 50px;
+	}
+
+	#nav_start_selected a, #nav_start a:hover
+	{
+		background-position: -50px 0;
+	}
+
+
+	.nav_company a
+	{
+		background: url('../img/site/menu/company.png');
+		width: 80px;
+	}
+
+	#nav_company_selected a, #nav_company a:hover
+	{
+		background-position: -80px 0;
+	}
+
+	.nav_products a
+	{
+		background: url('../img/site/menu/products.png');
+		width: 81px;
+	}
+
+	#nav_products_selected a, #nav_products a:hover
+	{
+		background-position: -81px 0;
+	}
+
+	.nav_proposals a
+	{
+		background: url('../img/site/menu/proposals.png');
+		width: 126px;
+	}
+
+	#nav_proposals_selected a, #nav_proposals a:hover
+	{
+		background-position: -126px 0;
+	}
+
+	.nav_gallery a
+	{
+		background: url('../img/site/menu/gallery.png');
+		width: 59px;
+	}
+
+	#nav_gallery_selected a, #nav_gallery a:hover
+	{
+		background-position: -59px 0;
+	}
+
+	.nav_contact a
+	{
+		background: url('../img/site/menu/contact.png');
+		width: 67px;
+	}
+
+	#nav_contact_selected a, #nav_contact a:hover
+	{
+		background-position: -67px 0;
+	}
+	
+	
+	#container_content
+	{
+		background-image: url('../img/site/bg_page.png');
+		width: 909px;
+	
+	}
+	
+	#content
+	{
+
+	}
+	
+	#footer
+	{
+		background-image: url('../img/site/bg_footer2.png');
+		background-repeat: no-repeat;
+		width: 909px;
+		height: 60px;
+	}
+	
+	#content_footer
+	{
+		padding-top: 12px;
+		padding-bottom: 0px;
+		text-align: center;
+	}
+	
+
+	#loginBox
+	{
+		display: none;
+		margin-left: 5px;
+		
+	}

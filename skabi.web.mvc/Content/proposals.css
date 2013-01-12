@@ -1,0 +1,94 @@
+﻿	#proposalsMenu	{	
+		background-image: url('../img/site/proposals_menu.png');
+		padding: 10px 0 10px 0;
+		margin: 0px;
+		overflow: hidden; 
+		height: auto;
+	}
+	
+	#proposalsMenu td
+	{
+	    overflow: hidden;
+	}
+	
+	.menuColumn {
+		margin-top: 0px;
+		/*padding: 0 20px 0 20px;*/
+		width: auto;
+		overflow: hidden;
+	}
+	
+	.menuColumn table {
+		margin: 0 20px 0 20px;
+	}
+
+	.menuColumn div {padding: 1px;}
+
+	#proposalsMenu div.borderleft {
+		/*float: none; */
+		border-left: 1px solid #E3E0E0;
+		/*width: 100px;*/
+	}
+	
+
+	#proposalsMenu td, tr {
+		margin: 0px;
+		padding: 0px;
+		vertical-align: center;
+	}
+
+	.proposalMenuLinks	{	
+			margin: 0px;
+			padding: 0px;
+			font-family: tahoma;
+			letter-spacing: -0px;
+			font-size: 8pt;
+			cursor: pointer;		
+	}
+	
+	#proposals_container	{
+		overflow: auto;
+		display: none;
+	}
+	
+	.propInfo td {
+		margin: 0;
+		padding: 0;
+		text-align: left;
+		font-family: arial;
+		font-size: 8pt;
+	}
+	.propInfo tr {
+			margin: 0;
+	}	
+	
+
+
+	#search-field {
+		float: left;
+		margin-top: 4px;
+		margin-right: 5px;
+		font-weight: bold;
+		text-align: center;
+	}
+	
+	#btn_search {
+		background: #fff url(../img/site/proposals/btn_search.png) no-repeat center; 
+		width: 28px; 
+		height: 29px; 
+		float: left;
+	}
+
+	.proposalHeader {
+		margin: 2px;
+		padding: 0px;
+		font-family: arial;
+		letter-spacing: -0px;
+		font-size: 9pt;
+	}
+	
+	.title {
+		color: blue;
+		font-weight: bold;
+	}
+	

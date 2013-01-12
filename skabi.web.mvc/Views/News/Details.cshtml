@@ -1,0 +1,32 @@
+﻿@model skabi.web.mvc.Models.news
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Details</title>
+</head>
+<body>
+    <fieldset>
+        <legend>news</legend>
+    
+        <div class="display-label">date</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.date)
+        </div>
+    
+        <div class="display-label">text</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.text)
+        </div>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
