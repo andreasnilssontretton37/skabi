@@ -11,7 +11,7 @@ namespace skabi.web.mvc.Controllers
 { 
     public class NewsController : Controller
     {
-        private efrpdbEntities3 db = new efrpdbEntities3();
+        //private efrpdbEntities3 db = new efrpdbEntities3();
 
         //
         // GET: /News/
@@ -19,12 +19,14 @@ namespace skabi.web.mvc.Controllers
         public ViewResult Index()
         {
             //return View(db.news.ToList());
-            return View("Index", db.news);
+            //return View("Index", db.news);
+            return View();
         }
 
         public ActionResult Latest()
         {
-            return View("Latest", db.news);
+            //return View("Latest", db.news);
+            return View();
         }
 
         //
@@ -32,8 +34,9 @@ namespace skabi.web.mvc.Controllers
 
         public ViewResult Details(int id)
         {
-            news news = db.news.Find(id);
-            return View(news);
+            //news news = db.news.Find(id);
+            //return View(news);
+            return View();
         }
 
         //
@@ -47,6 +50,7 @@ namespace skabi.web.mvc.Controllers
         //
         // POST: /News/Create
 
+        /*
         [HttpPost]
         public ActionResult Create(news news)
         {
@@ -59,19 +63,22 @@ namespace skabi.web.mvc.Controllers
 
             return View(news);
         }
+         */
         
         //
         // GET: /News/Edit/5
  
         public ActionResult Edit(int id)
         {
-            news news = db.news.Find(id);
-            return View(news);
+            //news news = db.news.Find(id);
+            //return View(news);
+            return View();
         }
 
         //
         // POST: /News/Edit/5
 
+        /*
         [HttpPost]
         public ActionResult Edit(news news)
         {
@@ -83,14 +90,15 @@ namespace skabi.web.mvc.Controllers
             }
             return View(news);
         }
-
+        */
         //
         // GET: /News/Delete/5
  
         public ActionResult Delete(int id)
         {
-            news news = db.news.Find(id);
-            return View(news);
+            //news news = db.news.Find(id);
+            //return View(news);
+            return View();
         }
 
         //
@@ -98,16 +106,19 @@ namespace skabi.web.mvc.Controllers
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
-        {            
+        {            /*
             news news = db.news.Find(id);
             db.news.Remove(news);
             db.SaveChanges();
+                      */
             return RedirectToAction("Index");
+                     
+            
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            //db.Dispose();
             base.Dispose(disposing);
         }
     }

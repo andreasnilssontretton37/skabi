@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using skabi.common.Services;
 using skabi.web.mvc.Models;
 using System.Data.Objects.SqlClient;
 
@@ -10,21 +11,28 @@ namespace skabi.web.mvc.Controllers
 {
     public class ProposalsController : Controller
     {
-        efrpdbEntities3 db = new efrpdbEntities3();
+        //efrpdbEntities3 db = new efrpdbEntities3();
         //
         // GET: /Proposal/
+        private readonly RpdbService _rpdbService;
+
+        public ProposalsController()
+        {
+            //_rpdbService = new RpdbService();
+        }
 
         public ActionResult Index()
         {
-            return View(db.carbrands);
+            return View();
         }
 
         public ActionResult GetLatestProposals()
         {
-            return View("LatestProposals", db.carmodeltypes_proposals);
+            //return View("LatestProposals", db.carmodeltypes_proposals);
+            return View();
         }
 
-
+        /*
         public JsonResult GetCarModels(int id)
         {
             var result = from carmodel in db.carmodels
@@ -84,6 +92,9 @@ namespace skabi.web.mvc.Controllers
 
             return this.Json(result, JsonRequestBehavior.AllowGet);
         }
+         * 
+         */
+
         //
         // GET: /Proposal/Details/5
 

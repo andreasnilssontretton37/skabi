@@ -9,12 +9,11 @@ namespace skabi.web.mvc.Controllers
 {
     public class HomeController : Controller
     {
-        efrpdbEntities3 db = new efrpdbEntities3();
 
         public ActionResult Index()
         {
-            ViewBag.Message = "Welcome to ASP.NET MVC!";
-            ViewBag.ModelNews = db.news;
+            //ViewBag.Message = "Welcome to ASP.NET MVC!";
+            //ViewBag.ModelNews = db.news;
 
             return View();
         }

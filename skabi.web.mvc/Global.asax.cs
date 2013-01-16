@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Ninject;
+using Ninject.Web.Common;
 using skabi.web.mvc.Models;
 using System.Web.Security;
 
@@ -12,7 +15,7 @@ namespace skabi.web.mvc
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
 
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : System.Web.HttpApplication //NinjectHttpApplication 
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
@@ -62,10 +65,23 @@ namespace skabi.web.mvc
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
 
-
-            AccountRepository repo = new AccountRepository();
-            ((AccountMembershipProvider)Membership.Provider).AccountRepository = repo;
-            ((AccountRoleProvider)Roles.Provider).AccountRepository = repo;
+           
+           // AccountRepository repo = new AccountRepository();
+           // ((AccountMembershipProvider)Membership.Provider).AccountRepository = repo;
+           // ((AccountRoleProvider)Roles.Provider).AccountRepository = repo;
         }
+
+        /*
+        protected override IKernel CreateKernel()
+        {
+            var kernel = new StandardKernel();
+            kernel.Load(Assembly.GetExecutingAssembly(),
+                Assembly.Load("skabi.data"),
+                Assembly.Load("skabi.services"));
+
+            return kernel;
+
+        }
+         */
     }
 }
