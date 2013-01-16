@@ -1,0 +1,103 @@
+﻿@{
+    Layout = null;
+}
+
+@using skabi.data.DomainModel;
+@model IEnumerable<Proposal>
+
+<div id="container_recent_proposals">
+    <div class="container_box_top">
+        <div class="corner top_left_box_corner">
+        </div>
+        <div class="corner top_right_box_corner">
+        </div>
+    </div>
+    <span style="clear: both;"></span>
+    <div style="margin-top: -2px; padding: 0px 0px 0px 0px; border-left: 1px solid #ccc;
+        border-right: 1px solid #ccc">
+        <p style="margin-left: 15px; padding: 10px 0px 20px 0px; font-size: 16px;">
+            Senaste inredningsförslagen</p>
+        <table style="width: 100%;">
+            <tr>
+                @foreach (var proposal in Model)
+                {
+                    <td align="center" style="border-right: 1px solid #ccc;">
+                        <table border="0" class="proposal">
+                            <tr>
+                                <td align="center">
+                                    <div style="text-align: left; font-size: 12px;">
+                                        @proposal.CarmodelTypesProposals.Last().CarmodelType.Carmodel.model_name
+                                        <br />
+                                        Axelavstånd @proposal.CarmodelTypesProposals.Last().CarmodelType.wheelbase mm @proposal.CarmodelTypesProposals.Last().CarmodelType.cubic m3
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" style="height: 140px;">
+                                    <a class="proposalimage" id="uniqueproposal_3197" href="img/proposals/renault/master/3078_8.0/29157.gif"
+                                        rel="lightbox[]" title="29157">
+                                        <img src="img/proposals/renault/master/3078_8.0/t29157.gif" alt="" />
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center">
+                                    <table border="0" class="propInfo">
+                                        <tr>
+                                            <td colspan="2">
+                                                <b>29157</b>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 80px;">
+                                                Bredd (mm):
+                                            </td>
+                                            <td>
+                                                <div id="width_586" rel="editin">
+                                                    2187</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Djup (mm):
+                                            </td>
+                                            <td>
+                                                <div id="depth_586" rel="editin">
+                                                    324</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Höjd (mm):
+                                            </td>
+                                            <td>
+                                                <div id="height_586" rel="editin">
+                                                    1026</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Vikt (kg):
+                                            </td>
+                                            <td>
+                                                <div id="weight_586" rel="editin">
+                                                    78.6</div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                }
+            </tr>
+        </table>
+    </div>
+    <div class="container_box_bottom">
+        <div class="corner bottom_left_box_corner">
+        </div>
+        <div class="corner bottom_right_box_corner">
+        </div>
+    </div>
+    <span style="clear: both;"></span>
+</div>

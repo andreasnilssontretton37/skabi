@@ -1,0 +1,56 @@
+﻿@{
+    Layout = null;
+}
+
+@using skabi.data.DomainModel;
+@model IEnumerable<News>
+           
+<div id="container_news">
+    <div class="container_box_top">
+        <div class="corner top_left_box_corner">
+        </div>
+        <div class="corner top_right_box_corner">
+        </div>
+    </div>
+    <span style="clear: both;"></span>
+    <div style="margin-top: -2px; padding: 0px 10px 0px 20px; border-left: 1px solid #ccc;
+        border-right: 1px solid #ccc">
+        <div style="padding: 10px 0px 10px 0px;">
+            <div>
+                <p style="padding-bottom: 15px; font-size: 16px;">
+                    Nyheter</p>
+            </div>
+            <div style="clear: both;">
+            </div>
+            <div id="container_newsitems">
+                @foreach (var item in Model)
+                {
+                    <div id="@item.id" class="newsitem">
+                        <div class="news_header">
+                            <div style="float: left;">
+                                <strong>@item.date </strong>
+                            </div>
+                            @*if(User.IsInRole("Admin"))  { 					  
+				                <a href="javascript:;" class="btn_delete_newsitem">Ta bort</a>
+				             } *@
+                            
+                        </div>
+                        <div style="clear: both;">
+                        </div>
+                        <div class="newstext">
+                            @item.text
+                        </div>
+                    </div>
+	
+                }
+            </div>
+        </div>
+    </div>
+    <div class="container_box_bottom">
+        <div class="corner bottom_left_box_corner">
+        </div>
+        <div class="corner bottom_right_box_corner">
+        </div>
+    </div>
+    <span style="clear: both;"></span>
+</div>

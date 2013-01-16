@@ -136,6 +136,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ProposalsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -148,6 +149,60 @@
     <Content Include="App_Data\rpdb_log.ldf">
       <DependentUpon>rpdb.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\general.css" />
+    <Content Include="Content\images\site\bg_color.png" />
+    <Content Include="Content\images\site\bg_footer.png" />
+    <Content Include="Content\images\site\bg_footer2.png" />
+    <Content Include="Content\images\site\bg_header.png" />
+    <Content Include="Content\images\site\bg_header_OLD.png" />
+    <Content Include="Content\images\site\bg_header_old_2.png" />
+    <Content Include="Content\images\site\bg_page.png" />
+    <Content Include="Content\images\site\bg_x.png" />
+    <Content Include="Content\images\site\buttons\abort.png" />
+    <Content Include="Content\images\site\buttons\add_user.png" />
+    <Content Include="Content\images\site\buttons\confirm.png" />
+    <Content Include="Content\images\site\buttons\delete.png" />
+    <Content Include="Content\images\site\buttons\del_user.png" />
+    <Content Include="Content\images\site\buttons\gallery_edit.png" />
+    <Content Include="Content\images\site\buttons\menudropper.png" />
+    <Content Include="Content\images\site\buttons\menuopener_right.png" />
+    <Content Include="Content\images\site\buttons\statistics.png" />
+    <Content Include="Content\images\site\buttons\users.png" />
+    <Content Include="Content\images\site\company\collage.jpg" />
+    <Content Include="Content\images\site\contact\karta.gif" />
+    <Content Include="Content\images\site\contact\zoomkarta.gif" />
+    <Content Include="Content\images\site\menu\company.png" />
+    <Content Include="Content\images\site\menu\contact.png" />
+    <Content Include="Content\images\site\menu\gallery.png" />
+    <Content Include="Content\images\site\menu\products.png" />
+    <Content Include="Content\images\site\menu\proposals.png" />
+    <Content Include="Content\images\site\menu\start.png" />
+    <Content Include="Content\images\site\menu\_old\company.png" />
+    <Content Include="Content\images\site\menu\_old\company_hover.png" />
+    <Content Include="Content\images\site\menu\_old\contact.png" />
+    <Content Include="Content\images\site\menu\_old\contact_hover.png" />
+    <Content Include="Content\images\site\menu\_old\gallery.png" />
+    <Content Include="Content\images\site\menu\_old\gallery_hover.png" />
+    <Content Include="Content\images\site\menu\_old\products.png" />
+    <Content Include="Content\images\site\menu\_old\products_hover.png" />
+    <Content Include="Content\images\site\menu\_old\proposals.png" />
+    <Content Include="Content\images\site\menu\_old\proposals_hover.png" />
+    <Content Include="Content\images\site\menu\_old\start.png" />
+    <Content Include="Content\images\site\menu\_old\start_hover.png" />
+    <Content Include="Content\images\site\proposals\btn_search.png" />
+    <Content Include="Content\images\site\start\news\border_bottom.png" />
+    <Content Include="Content\images\site\start\news\border_top.png" />
+    <Content Include="Content\images\site\start\news\bottom_left.png" />
+    <Content Include="Content\images\site\start\news\bottom_right.png" />
+    <Content Include="Content\images\site\start\news\dot_border.png" />
+    <Content Include="Content\images\site\start\news\top_left.png" />
+    <Content Include="Content\images\site\start\news\top_right.png" />
+    <Content Include="Content\images\site\start\news\_old\bottom_left.png" />
+    <Content Include="Content\images\site\start\news\_old\bottom_right.png" />
+    <Content Include="Content\images\site\start\news\_old\dot_border.png" />
+    <Content Include="Content\images\site\start\news\_old\top_left.png" />
+    <Content Include="Content\images\site\start\news\_old\top_right.png" />
+    <Content Include="Content\start.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -235,6 +290,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Proposals\Index.cshtml" />
+    <Content Include="Views\Home\LatestNews.cshtml" />
+    <Content Include="Views\Home\LatestProposals.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

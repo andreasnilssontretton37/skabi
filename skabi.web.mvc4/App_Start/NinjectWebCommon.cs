@@ -70,13 +70,16 @@ namespace skabi.web.mvc4.App_Start
                   .InRequestScope()
                   .WithConstructorArgument("connectionString",
                                            WebConfigurationManager.ConnectionStrings["rpdbEntities"].ToString());
-            kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
-            //kernel.Bind<IContext>().ToMethod(context => ContextFactory.GetDatabaseContext(false, WebConfigurationManager.ConnectionStrings["rpdbEntities"].ToString())).InRequestScope();
-            kernel.Bind<ICarbrandRepository>().To<CarbrandRepository>().InRequestScope();
-                 //.WithConstructorArgument("context", ContextFactory.GetDatabaseContext(false, ""))
-                // .WithConstructorArgument("work", ContextFactory.GetUnitOfWorkContext(false, null));
 
+            kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
+            kernel.Bind<ICarbrandRepository>().To<CarbrandRepository>().InRequestScope();
+            kernel.Bind<INewsRepository>().To<NewsRepository>().InRequestScope();
+            kernel.Bind<IProposalRepository>().To<ProposalRepository>().InRequestScope();
+            
+
+            kernel.Bind<INewsService>().To<NewsService>().InRequestScope();
             kernel.Bind<IRpdbService>().To<RpdbService>().InRequestScope();
+            
 
 
 

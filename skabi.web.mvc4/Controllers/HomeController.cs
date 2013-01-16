@@ -11,10 +11,12 @@ namespace skabi.web.mvc4.Controllers
     public class HomeController : Controller
     {
         private readonly IRpdbService _rpdbService;
+        private readonly INewsService _newsService;
 
-        public HomeController(IRpdbService rpdbService)
+        public HomeController(INewsService newsService, IRpdbService rpdbService)
         {
             this._rpdbService = rpdbService;
+            this._newsService = newsService;
         }
 
 
@@ -25,6 +27,8 @@ namespace skabi.web.mvc4.Controllers
             var brands = _rpdbService.GetAllCarbrands();
             var homeViewModel = new HomeViewModel();
             homeViewModel.Carbrands = brands;
+            homeViewModel.News = _newsService.GetTopFiveNews();
+            homeViewModel.LatestProposals = _rpdbService.GetLatestProposals(4);
             return View(homeViewModel);
         }
 

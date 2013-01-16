@@ -6,5 +6,6 @@ namespace skabi.common.Services
     public interface IRpdbService
     {
         IEnumerable<Carbrand> GetAllCarbrands();
+        IEnumerable<Proposal> GetLatestProposals(int numberOf);
     }
 }

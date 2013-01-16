@@ -6,9 +6,21 @@
     ViewBag.Title = "Home";
 }
 
-<h2>Home</h2>
-
-@foreach (Carbrand carbrand in Model.Carbrands)
-{
-    <div>@carbrand.brand_name</div>
+@section AddToHead{
+    <link href="@Url.Content("~/Content/start.css")" rel="stylesheet" type="text/css" />
 }
+<div id="content">
+    <div id="column_left">
+        @Html.Partial("LatestNews", Model.News)
+    </div>
+    <div id="column_right">
+        <div id="container_slideshow" class="slideshowContainer">
+            <img src="img/slideshow/three.jpg" alt="" />
+        </div>
+    </div>
+    <div style="clear: both;">
+    </div>
+    @Html.Partial("LatestProposals", Model.LatestProposals)
+    <div style="clear: both;">
+    </div>
+</div>
