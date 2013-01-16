@@ -1,0 +1,425 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RpdbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="RpdbModelStoreContainer">
+          <EntitySet Name="Carbrands" EntityType="RpdbModel.Store.Carbrands" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Carmodels" EntityType="RpdbModel.Store.Carmodels" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CarmodelTypes" EntityType="RpdbModel.Store.CarmodelTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CarmodelTypesProposals" EntityType="RpdbModel.Store.CarmodelTypesProposals" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="News" EntityType="RpdbModel.Store.News" store:Type="Tables" store:Schema="dbo" store:Name="News">
+            <DefiningQuery>SELECT 
+      [News].[id] AS [id], 
+      [News].[date] AS [date], 
+      [News].[text] AS [text]
+      FROM [dbo].[News] AS [News]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Proposals" EntityType="RpdbModel.Store.Proposals" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_carbrands_carbrands" Association="RpdbModel.Store.FK_carbrands_carbrands">
+            <End Role="Carbrands" EntitySet="Carbrands" />
+            <End Role="Carbrands1" EntitySet="Carbrands" />
+          </AssociationSet>
+          <AssociationSet Name="FK_carmodels_carbrands" Association="RpdbModel.Store.FK_carmodels_carbrands">
+            <End Role="Carbrands" EntitySet="Carbrands" />
+            <End Role="Carmodels" EntitySet="Carmodels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_carmodeltypes_carmodels" Association="RpdbModel.Store.FK_carmodeltypes_carmodels">
+            <End Role="Carmodels" EntitySet="Carmodels" />
+            <End Role="CarmodelTypes" EntitySet="CarmodelTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_carmodeltypes_proposals_carmodeltypes" Association="RpdbModel.Store.FK_carmodeltypes_proposals_carmodeltypes">
+            <End Role="CarmodelTypes" EntitySet="CarmodelTypes" />
+            <End Role="CarmodelTypesProposals" EntitySet="CarmodelTypesProposals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_carmodeltypes_proposals_carmodeltypes_proposals" Association="RpdbModel.Store.FK_carmodeltypes_proposals_carmodeltypes_proposals">
+            <End Role="Proposals" EntitySet="Proposals" />
+            <End Role="CarmodelTypesProposals" EntitySet="CarmodelTypesProposals" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Carbrands">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="brand_name" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="brandclicks" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Carmodels">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="carbrand_id" Type="int" Nullable="false" />
+          <Property Name="model_name" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="modelclicks" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CarmodelTypes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="carmodel_id" Type="int" Nullable="false" />
+          <Property Name="wheelbase" Type="int" Nullable="false" />
+          <Property Name="cubic" Type="varchar" Nullable="false" MaxLength="11" />
+          <Property Name="typeclicks" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CarmodelTypesProposals">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="carmodeltype_id" Type="int" Nullable="false" />
+          <Property Name="proposal_id" Type="int" Nullable="false" />
+          <Property Name="left_right" Type="int" Nullable="false" />
+          <Property Name="uniqueclicks" Type="int" Nullable="false" />
+          <Property Name="order_id" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'C:\USERS\ANDREAS NILSSON\DOCUMENTS\VISUAL STUDIO 2012\PROJECTS\SKABI\SKABI.MVC.DATA\RPDB.MDF.dbo.News' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="date" />
+            <PropertyRef Name="text" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="date" Type="varchar" Nullable="false" MaxLength="6" />
+          <Property Name="text" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Proposals">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="art_nr" Type="varchar" Nullable="false" MaxLength="11" />
+          <Property Name="width" Type="varchar" Nullable="false" MaxLength="11" />
+          <Property Name="height" Type="varchar" Nullable="false" MaxLength="11" />
+          <Property Name="depth" Type="varchar" Nullable="false" MaxLength="11" />
+          <Property Name="weight" Type="varchar" Nullable="false" MaxLength="11" />
+          <Property Name="price" Type="varchar" MaxLength="20" />
+          <Property Name="price_installed" Type="varchar" MaxLength="20" />
+          <Property Name="proposalclicks" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_carbrands_carbrands">
+          <End Role="Carbrands" Type="RpdbModel.Store.Carbrands" Multiplicity="1" />
+          <End Role="Carbrands1" Type="RpdbModel.Store.Carbrands" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Carbrands">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Carbrands1">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_carmodels_carbrands">
+          <End Role="Carbrands" Type="RpdbModel.Store.Carbrands" Multiplicity="1" />
+          <End Role="Carmodels" Type="RpdbModel.Store.Carmodels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carbrands">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Carmodels">
+              <PropertyRef Name="carbrand_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_carmodeltypes_carmodels">
+          <End Role="Carmodels" Type="RpdbModel.Store.Carmodels" Multiplicity="1" />
+          <End Role="CarmodelTypes" Type="RpdbModel.Store.CarmodelTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carmodels">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CarmodelTypes">
+              <PropertyRef Name="carmodel_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_carmodeltypes_proposals_carmodeltypes">
+          <End Role="CarmodelTypes" Type="RpdbModel.Store.CarmodelTypes" Multiplicity="1" />
+          <End Role="CarmodelTypesProposals" Type="RpdbModel.Store.CarmodelTypesProposals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarmodelTypes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CarmodelTypesProposals">
+              <PropertyRef Name="carmodeltype_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_carmodeltypes_proposals_carmodeltypes_proposals">
+          <End Role="Proposals" Type="RpdbModel.Store.Proposals" Multiplicity="1" />
+          <End Role="CarmodelTypesProposals" Type="RpdbModel.Store.CarmodelTypesProposals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proposals">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CarmodelTypesProposals">
+              <PropertyRef Name="proposal_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="skabi.data.Models" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="rpdbEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Carbrands" EntityType="skabi.data.Models.Carbrand" />
+          <EntitySet Name="Carmodels" EntityType="skabi.data.Models.Carmodel" />
+          <EntitySet Name="CarmodelTypes" EntityType="skabi.data.Models.CarmodelType" />
+          <EntitySet Name="CarmodelTypesProposals" EntityType="skabi.data.Models.CarmodelTypesProposal" />
+          <EntitySet Name="News" EntityType="skabi.data.Models.News" />
+          <EntitySet Name="Proposals" EntityType="skabi.data.Models.Proposal" />
+          <AssociationSet Name="FK_carbrands_carbrands" Association="skabi.data.Models.FK_carbrands_carbrands">
+            <End Role="Carbrand" EntitySet="Carbrands" />
+            <End Role="Carbrand1" EntitySet="Carbrands" />
+          </AssociationSet>
+          <AssociationSet Name="FK_carmodels_carbrands" Association="skabi.data.Models.FK_carmodels_carbrands">
+            <End Role="Carbrand" EntitySet="Carbrands" />
+            <End Role="Carmodel" EntitySet="Carmodels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_carmodeltypes_carmodels" Association="skabi.data.Models.FK_carmodeltypes_carmodels">
+            <End Role="Carmodel" EntitySet="Carmodels" />
+            <End Role="CarmodelType" EntitySet="CarmodelTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_carmodeltypes_proposals_carmodeltypes" Association="skabi.data.Models.FK_carmodeltypes_proposals_carmodeltypes">
+            <End Role="CarmodelType" EntitySet="CarmodelTypes" />
+            <End Role="CarmodelTypesProposal" EntitySet="CarmodelTypesProposals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_carmodeltypes_proposals_carmodeltypes_proposals" Association="skabi.data.Models.FK_carmodeltypes_proposals_carmodeltypes_proposals">
+            <End Role="Proposal" EntitySet="Proposals" />
+            <End Role="CarmodelTypesProposal" EntitySet="CarmodelTypesProposals" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Carbrand">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="brand_name" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="brandclicks" Nullable="false" />
+          <NavigationProperty Name="Carbrands1" Relationship="skabi.data.Models.FK_carbrands_carbrands" FromRole="Carbrand" ToRole="Carbrand1" />
+          <NavigationProperty Name="Carbrand1" Relationship="skabi.data.Models.FK_carbrands_carbrands" FromRole="Carbrand1" ToRole="Carbrand" />
+          <NavigationProperty Name="Carmodels" Relationship="skabi.data.Models.FK_carmodels_carbrands" FromRole="Carbrand" ToRole="Carmodel" />
+        </EntityType>
+        <EntityType Name="Carmodel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="carbrand_id" Nullable="false" />
+          <Property Type="String" Name="model_name" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="modelclicks" Nullable="false" />
+          <NavigationProperty Name="Carbrand" Relationship="skabi.data.Models.FK_carmodels_carbrands" FromRole="Carmodel" ToRole="Carbrand" />
+          <NavigationProperty Name="CarmodelTypes" Relationship="skabi.data.Models.FK_carmodeltypes_carmodels" FromRole="Carmodel" ToRole="CarmodelType" />
+        </EntityType>
+        <EntityType Name="CarmodelType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="carmodel_id" Nullable="false" />
+          <Property Type="Int32" Name="wheelbase" Nullable="false" />
+          <Property Type="String" Name="cubic" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="typeclicks" Nullable="false" />
+          <NavigationProperty Name="Carmodel" Relationship="skabi.data.Models.FK_carmodeltypes_carmodels" FromRole="CarmodelType" ToRole="Carmodel" />
+          <NavigationProperty Name="CarmodelTypesProposals" Relationship="skabi.data.Models.FK_carmodeltypes_proposals_carmodeltypes" FromRole="CarmodelType" ToRole="CarmodelTypesProposal" />
+        </EntityType>
+        <EntityType Name="CarmodelTypesProposal">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="carmodeltype_id" Nullable="false" />
+          <Property Type="Int32" Name="proposal_id" Nullable="false" />
+          <Property Type="Int32" Name="left_right" Nullable="false" />
+          <Property Type="Int32" Name="uniqueclicks" Nullable="false" />
+          <Property Type="Int32" Name="order_id" Nullable="false" />
+          <NavigationProperty Name="CarmodelType" Relationship="skabi.data.Models.FK_carmodeltypes_proposals_carmodeltypes" FromRole="CarmodelTypesProposal" ToRole="CarmodelType" />
+          <NavigationProperty Name="Proposal" Relationship="skabi.data.Models.FK_carmodeltypes_proposals_carmodeltypes_proposals" FromRole="CarmodelTypesProposal" ToRole="Proposal" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="date" />
+            <PropertyRef Name="text" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="date" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="text" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Proposal">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="art_nr" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="width" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="height" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="depth" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="weight" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="price" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="price_installed" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="proposalclicks" Nullable="false" />
+          <NavigationProperty Name="CarmodelTypesProposals" Relationship="skabi.data.Models.FK_carmodeltypes_proposals_carmodeltypes_proposals" FromRole="Proposal" ToRole="CarmodelTypesProposal" />
+        </EntityType>
+        <Association Name="FK_carbrands_carbrands">
+          <End Type="skabi.data.Models.Carbrand" Role="Carbrand" Multiplicity="1" />
+          <End Type="skabi.data.Models.Carbrand" Role="Carbrand1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Carbrand">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Carbrand1">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_carmodels_carbrands">
+          <End Type="skabi.data.Models.Carbrand" Role="Carbrand" Multiplicity="1" />
+          <End Type="skabi.data.Models.Carmodel" Role="Carmodel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carbrand">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Carmodel">
+              <PropertyRef Name="carbrand_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_carmodeltypes_carmodels">
+          <End Type="skabi.data.Models.Carmodel" Role="Carmodel" Multiplicity="1" />
+          <End Type="skabi.data.Models.CarmodelType" Role="CarmodelType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carmodel">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CarmodelType">
+              <PropertyRef Name="carmodel_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_carmodeltypes_proposals_carmodeltypes">
+          <End Type="skabi.data.Models.CarmodelType" Role="CarmodelType" Multiplicity="1" />
+          <End Type="skabi.data.Models.CarmodelTypesProposal" Role="CarmodelTypesProposal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarmodelType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CarmodelTypesProposal">
+              <PropertyRef Name="carmodeltype_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_carmodeltypes_proposals_carmodeltypes_proposals">
+          <End Type="skabi.data.Models.Proposal" Role="Proposal" Multiplicity="1" />
+          <End Type="skabi.data.Models.CarmodelTypesProposal" Role="CarmodelTypesProposal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proposal">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CarmodelTypesProposal">
+              <PropertyRef Name="proposal_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RpdbModelStoreContainer" CdmEntityContainer="rpdbEntities">
+          <EntitySetMapping Name="Carbrands">
+            <EntityTypeMapping TypeName="skabi.data.Models.Carbrand">
+              <MappingFragment StoreEntitySet="Carbrands">
+                <ScalarProperty Name="brandclicks" ColumnName="brandclicks" />
+                <ScalarProperty Name="brand_name" ColumnName="brand_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Carmodels">
+            <EntityTypeMapping TypeName="skabi.data.Models.Carmodel">
+              <MappingFragment StoreEntitySet="Carmodels">
+                <ScalarProperty Name="modelclicks" ColumnName="modelclicks" />
+                <ScalarProperty Name="model_name" ColumnName="model_name" />
+                <ScalarProperty Name="carbrand_id" ColumnName="carbrand_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarmodelTypes">
+            <EntityTypeMapping TypeName="skabi.data.Models.CarmodelType">
+              <MappingFragment StoreEntitySet="CarmodelTypes">
+                <ScalarProperty Name="typeclicks" ColumnName="typeclicks" />
+                <ScalarProperty Name="cubic" ColumnName="cubic" />
+                <ScalarProperty Name="wheelbase" ColumnName="wheelbase" />
+                <ScalarProperty Name="carmodel_id" ColumnName="carmodel_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarmodelTypesProposals">
+            <EntityTypeMapping TypeName="skabi.data.Models.CarmodelTypesProposal">
+              <MappingFragment StoreEntitySet="CarmodelTypesProposals">
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="uniqueclicks" ColumnName="uniqueclicks" />
+                <ScalarProperty Name="left_right" ColumnName="left_right" />
+                <ScalarProperty Name="proposal_id" ColumnName="proposal_id" />
+                <ScalarProperty Name="carmodeltype_id" ColumnName="carmodeltype_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="skabi.data.Models.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proposals">
+            <EntityTypeMapping TypeName="skabi.data.Models.Proposal">
+              <MappingFragment StoreEntitySet="Proposals">
+                <ScalarProperty Name="proposalclicks" ColumnName="proposalclicks" />
+                <ScalarProperty Name="price_installed" ColumnName="price_installed" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="weight" ColumnName="weight" />
+                <ScalarProperty Name="depth" ColumnName="depth" />
+                <ScalarProperty Name="height" ColumnName="height" />
+                <ScalarProperty Name="width" ColumnName="width" />
+                <ScalarProperty Name="art_nr" ColumnName="art_nr" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

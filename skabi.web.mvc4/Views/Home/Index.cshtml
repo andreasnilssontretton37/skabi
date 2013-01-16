@@ -1,0 +1,14 @@
+﻿@using skabi.data.DomainModel
+@model skabi.common.ViewModels.HomeViewModel
+
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<h2>Home</h2>
+
+@foreach (Carbrand carbrand in Model.Carbrands)
+{
+    <div>@carbrand.brand_name</div>
+}
