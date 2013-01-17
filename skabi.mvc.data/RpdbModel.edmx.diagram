@@ -5,17 +5,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="48256512101448c4b5858570a5812afa" Name="Diagram1">
-        <EntityTypeShape EntityType="skabi.data.Models.Carbrand" Width="1.5" PointX="1.125" PointY="8.5" />
-        <EntityTypeShape EntityType="skabi.data.Models.Carmodel" Width="1.5" PointX="4.125" PointY="8.375" />
-        <EntityTypeShape EntityType="skabi.data.Models.CarmodelType" Width="1.5" PointX="6.375" PointY="8.5" />
-        <EntityTypeShape EntityType="skabi.data.Models.CarmodelTypesProposal" Width="1.5" PointX="9.75" PointY="8.875" />
-        <EntityTypeShape EntityType="skabi.data.Models.News" Width="1.5" PointX="6.25" PointY="12.875" />
-        <EntityTypeShape EntityType="skabi.data.Models.Proposal" Width="1.5" PointX="12.375" PointY="9" />
-        <AssociationConnector Association="skabi.data.Models.FK_carbrands_carbrands" />
-        <AssociationConnector Association="skabi.data.Models.FK_carmodels_carbrands" />
-        <AssociationConnector Association="skabi.data.Models.FK_carmodeltypes_carmodels" />
-        <AssociationConnector Association="skabi.data.Models.FK_carmodeltypes_proposals_carmodeltypes" />
-        <AssociationConnector Association="skabi.data.Models.FK_carmodeltypes_proposals_carmodeltypes_proposals" />
+        <EntityTypeShape EntityType="skabi.data.Models.Carbrand" Width="1.5" PointX="7.7162614817341151" PointY="5.4217245156977905" />
+        <EntityTypeShape EntityType="skabi.data.Models.Carmodel" Width="1.5" PointX="2.0836914750205779" PointY="0.10608026390247059" />
+        <EntityTypeShape EntityType="skabi.data.Models.CarmodelType" Width="1.5" PointX="8.5345338212952644" PointY="23.691219772999744" />
+        <EntityTypeShape EntityType="skabi.data.Models.CarmodelTypesProposal" Width="1.5" PointX="10.640870035924422" PointY="6.876376244647604" />
+        <EntityTypeShape EntityType="skabi.data.Models.Layout" Width="1.5" PointX="6.3468483585616795" PointY="13.559127173181217" />
+        <EntityTypeShape EntityType="skabi.data.Models.News" Width="1.5" PointX="2.7049049691785614" PointY="7.76259893540414" />
+        <EntityTypeShape EntityType="skabi.data.Models.Proposal" Width="1.5" PointX="2.6264921029221693" PointY="4.8377008162614423" />
+        <AssociationConnector Association="skabi.data.Models.FK_Carmodels_Carbrands" />
+        <AssociationConnector Association="skabi.data.Models.FK_CarmodelType_Carmodel" />
+        <AssociationConnector Association="skabi.data.Models.FK_CarmodelTypesProposal_CarmodelType" />
+        <AssociationConnector Association="skabi.data.Models.FK_CarmodelTypesProposals_Proposal" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

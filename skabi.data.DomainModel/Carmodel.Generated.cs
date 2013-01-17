@@ -19,36 +19,36 @@ namespace skabi.data.DomainModel
     {
         #region Primitive Properties
     
-        public virtual int id
+        public virtual int CarmodelID
         {
             get;
             set;
         }
     
-        public virtual int carbrand_id
+        public virtual int CarbrandID
         {
-            get { return _carbrand_id; }
+            get { return _carbrandID; }
             set
             {
-                if (_carbrand_id != value)
+                if (_carbrandID != value)
                 {
-                    if (Carbrand != null && Carbrand.id != value)
+                    if (Carbrand != null && Carbrand.CarbrandID != value)
                     {
                         Carbrand = null;
                     }
-                    _carbrand_id = value;
+                    _carbrandID = value;
                 }
             }
         }
-        private int _carbrand_id;
+        private int _carbrandID;
     
-        public virtual string model_name
+        public virtual string Name
         {
             get;
             set;
         }
     
-        public virtual int modelclicks
+        public virtual int Clicks
         {
             get;
             set;
@@ -122,9 +122,9 @@ namespace skabi.data.DomainModel
                 {
                     Carbrand.Carmodels.Add(this);
                 }
-                if (carbrand_id != Carbrand.id)
+                if (CarbrandID != Carbrand.CarbrandID)
                 {
-                    carbrand_id = Carbrand.id;
+                    CarbrandID = Carbrand.CarbrandID;
                 }
             }
         }

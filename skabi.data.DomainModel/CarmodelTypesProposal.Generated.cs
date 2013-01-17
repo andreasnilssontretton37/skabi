@@ -19,63 +19,45 @@ namespace skabi.data.DomainModel
     {
         #region Primitive Properties
     
-        public virtual int id
+        public virtual int CarmodelTypeProposalID
         {
             get;
             set;
         }
     
-        public virtual int carmodeltype_id
+        public virtual int CarmodelTypeID
         {
-            get { return _carmodeltype_id; }
+            get { return _carmodelTypeID; }
             set
             {
-                if (_carmodeltype_id != value)
+                if (_carmodelTypeID != value)
                 {
-                    if (CarmodelType != null && CarmodelType.id != value)
+                    if (CarmodelType != null && CarmodelType.CarmodelTypeID != value)
                     {
                         CarmodelType = null;
                     }
-                    _carmodeltype_id = value;
+                    _carmodelTypeID = value;
                 }
             }
         }
-        private int _carmodeltype_id;
+        private int _carmodelTypeID;
     
-        public virtual int proposal_id
+        public virtual int ProposalID
         {
-            get { return _proposal_id; }
+            get { return _proposalID; }
             set
             {
-                if (_proposal_id != value)
+                if (_proposalID != value)
                 {
-                    if (Proposal != null && Proposal.id != value)
+                    if (Proposal != null && Proposal.ProposalID != value)
                     {
                         Proposal = null;
                     }
-                    _proposal_id = value;
+                    _proposalID = value;
                 }
             }
         }
-        private int _proposal_id;
-    
-        public virtual int left_right
-        {
-            get;
-            set;
-        }
-    
-        public virtual int uniqueclicks
-        {
-            get;
-            set;
-        }
-    
-        public virtual int order_id
-        {
-            get;
-            set;
-        }
+        private int _proposalID;
 
         #endregion
 
@@ -128,9 +110,9 @@ namespace skabi.data.DomainModel
                 {
                     CarmodelType.CarmodelTypesProposals.Add(this);
                 }
-                if (carmodeltype_id != CarmodelType.id)
+                if (CarmodelTypeID != CarmodelType.CarmodelTypeID)
                 {
-                    carmodeltype_id = CarmodelType.id;
+                    CarmodelTypeID = CarmodelType.CarmodelTypeID;
                 }
             }
         }
@@ -148,9 +130,9 @@ namespace skabi.data.DomainModel
                 {
                     Proposal.CarmodelTypesProposals.Add(this);
                 }
-                if (proposal_id != Proposal.id)
+                if (ProposalID != Proposal.ProposalID)
                 {
-                    proposal_id = Proposal.id;
+                    ProposalID = Proposal.ProposalID;
                 }
             }
         }

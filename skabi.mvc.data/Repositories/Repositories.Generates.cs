@@ -87,7 +87,7 @@ namespace skabi.data.Repository
  
         public override Carbrand GetById(int id)   
         {
-            return _objectSet.SingleOrDefault(e => e.id == id);
+            return _objectSet.SingleOrDefault(e => e.CarbrandID == id);
         }
  
         #endregion        
@@ -109,7 +109,7 @@ namespace skabi.data.Repository
  
         public override Carmodel GetById(int id)   
         {
-            return _objectSet.SingleOrDefault(e => e.id == id);
+            return _objectSet.SingleOrDefault(e => e.CarmodelID == id);
         }
  
         #endregion        
@@ -131,7 +131,7 @@ namespace skabi.data.Repository
  
         public override CarmodelType GetById(int id)   
         {
-            return _objectSet.SingleOrDefault(e => e.id == id);
+            return _objectSet.SingleOrDefault(e => e.CarmodelTypeID == id);
         }
  
         #endregion        
@@ -153,7 +153,29 @@ namespace skabi.data.Repository
  
         public override CarmodelTypesProposal GetById(int id)   
         {
-            return _objectSet.SingleOrDefault(e => e.id == id);
+            return _objectSet.SingleOrDefault(e => e.CarmodelTypeID == id);
+        }
+ 
+        #endregion        
+    }
+    
+    public partial class LayoutRepository : 
+		Repository<Layout>
+    {
+        #region Ctor
+ 
+        public LayoutRepository(ObjectContext context)
+               : base(context)
+        {
+        }
+ 
+        #endregion
+ 
+        #region Methods
+ 
+        public override Layout GetById(int id)   
+        {
+            return _objectSet.SingleOrDefault(e => e.LayoutID == id);
         }
  
         #endregion        
@@ -197,7 +219,7 @@ namespace skabi.data.Repository
  
         public override Proposal GetById(int id)   
         {
-            return _objectSet.SingleOrDefault(e => e.id == id);
+            return _objectSet.SingleOrDefault(e => e.ProposalID == id);
         }
  
         #endregion        
@@ -215,6 +237,8 @@ namespace skabi.data.Repository
 		CarmodelTypes { get; }   
             IRepository<CarmodelTypesProposal> 
 		CarmodelTypesProposals { get; }   
+            IRepository<Layout> 
+		Layouts { get; }   
             IRepository<News> 
 		News { get; }   
             IRepository<Proposal> 
@@ -233,6 +257,7 @@ namespace skabi.data.Repository
         private CarmodelRepository _carmodels;
         private CarmodelTypeRepository _carmodeltypes;
         private CarmodelTypesProposalRepository _carmodeltypesproposals;
+        private LayoutRepository _layouts;
         private NewsRepository _news;
         private ProposalRepository _proposals;
         
@@ -296,6 +321,17 @@ namespace skabi.data.Repository
                 _carmodeltypesproposals = new CarmodelTypesProposalRepository(_context);
             }
             return _carmodeltypesproposals;
+        }
+    }
+        public IRepository<Layout> Layouts
+    {
+        get
+        {
+            if (_layouts == null)
+            {
+                _layouts = new LayoutRepository(_context);
+            }
+            return _layouts;
         }
     }
         public IRepository<News> News

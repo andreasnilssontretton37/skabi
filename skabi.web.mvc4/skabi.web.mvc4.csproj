@@ -145,9 +145,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\rpdb.mdf" />
+    <Content Include="App_Data\rpdb.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="App_Data\rpdb_log.ldf">
       <DependentUpon>rpdb.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\rpdb_old.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\rpdb_old_log.ldf">
+      <DependentUpon>rpdb_old.mdf</DependentUpon>
     </Content>
     <Content Include="Content\general.css" />
     <Content Include="Content\images\site\bg_color.png" />

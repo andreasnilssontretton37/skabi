@@ -19,55 +19,55 @@ namespace skabi.data.DomainModel
     {
         #region Primitive Properties
     
-        public virtual int id
+        public virtual int ProposalID
         {
             get;
             set;
         }
     
-        public virtual string art_nr
+        public virtual string ArtNr
         {
             get;
             set;
         }
     
-        public virtual string width
+        public virtual string Width
         {
             get;
             set;
         }
     
-        public virtual string height
+        public virtual string Height
         {
             get;
             set;
         }
     
-        public virtual string depth
+        public virtual string Depth
         {
             get;
             set;
         }
     
-        public virtual string weight
+        public virtual string Weight
         {
             get;
             set;
         }
     
-        public virtual string price
+        public virtual string Price
         {
             get;
             set;
         }
     
-        public virtual string price_installed
+        public virtual string PriceInstalled
         {
             get;
             set;
         }
     
-        public virtual int proposalclicks
+        public virtual int Clicks
         {
             get;
             set;

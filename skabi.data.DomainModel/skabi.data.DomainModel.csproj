@@ -52,6 +52,9 @@
     <Compile Include="CarmodelTypesProposal.Generated.cs">
       <DependentUpon>Rpdb.PocoGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="Layout.Generated.cs">
+      <DependentUpon>Rpdb.PocoGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="News.Generated.cs">
       <DependentUpon>Rpdb.PocoGenerator.tt</DependentUpon>
     </Compile>

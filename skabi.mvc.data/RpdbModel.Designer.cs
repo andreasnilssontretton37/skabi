@@ -19,11 +19,10 @@ using System.Xml.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("skabi.data.Models", "FK_carbrands_carbrands", "Carbrand", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(skabi.data.Carbrand), "Carbrand1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(skabi.data.Carbrand), true)]
-[assembly: EdmRelationshipAttribute("skabi.data.Models", "FK_carmodels_carbrands", "Carbrand", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(skabi.data.Carbrand), "Carmodel", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(skabi.data.Carmodel), true)]
-[assembly: EdmRelationshipAttribute("skabi.data.Models", "FK_carmodeltypes_carmodels", "Carmodel", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(skabi.data.Carmodel), "CarmodelType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(skabi.data.CarmodelType), true)]
-[assembly: EdmRelationshipAttribute("skabi.data.Models", "FK_carmodeltypes_proposals_carmodeltypes", "CarmodelType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(skabi.data.CarmodelType), "CarmodelTypesProposal", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(skabi.data.CarmodelTypesProposal), true)]
-[assembly: EdmRelationshipAttribute("skabi.data.Models", "FK_carmodeltypes_proposals_carmodeltypes_proposals", "Proposal", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(skabi.data.Proposal), "CarmodelTypesProposal", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(skabi.data.CarmodelTypesProposal), true)]
+[assembly: EdmRelationshipAttribute("skabi.data.Models", "FK_Carmodels_Carbrands", "Carbrand", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(skabi.data.Carbrand), "Carmodel", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(skabi.data.Carmodel), true)]
+[assembly: EdmRelationshipAttribute("skabi.data.Models", "FK_CarmodelType_Carmodel", "Carmodel", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(skabi.data.Carmodel), "CarmodelType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(skabi.data.CarmodelType), true)]
+[assembly: EdmRelationshipAttribute("skabi.data.Models", "FK_CarmodelTypesProposal_CarmodelType", "CarmodelType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(skabi.data.CarmodelType), "CarmodelTypesProposal", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(skabi.data.CarmodelTypesProposal), true)]
+[assembly: EdmRelationshipAttribute("skabi.data.Models", "FK_CarmodelTypesProposals_Proposal", "Proposal", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(skabi.data.Proposal), "CarmodelTypesProposal", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(skabi.data.CarmodelTypesProposal), true)]
 
 #endregion
 
@@ -142,6 +141,22 @@ namespace skabi.data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<Layout> Layouts
+        {
+            get
+            {
+                if ((_Layouts == null))
+                {
+                    _Layouts = base.CreateObjectSet<Layout>("Layouts");
+                }
+                return _Layouts;
+            }
+        }
+        private ObjectSet<Layout> _Layouts;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<News> News
         {
             get
@@ -208,6 +223,14 @@ namespace skabi.data
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the Layouts EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToLayouts(Layout layout)
+        {
+            base.AddObject("Layouts", layout);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the News EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToNews(News news)
@@ -244,15 +267,15 @@ namespace skabi.data
         /// <summary>
         /// Create a new Carbrand object.
         /// </summary>
-        /// <param name="id">Initial value of the id property.</param>
-        /// <param name="brand_name">Initial value of the brand_name property.</param>
-        /// <param name="brandclicks">Initial value of the brandclicks property.</param>
-        public static Carbrand CreateCarbrand(global::System.Int32 id, global::System.String brand_name, global::System.Int32 brandclicks)
+        /// <param name="carbrandID">Initial value of the CarbrandID property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="clicks">Initial value of the Clicks property.</param>
+        public static Carbrand CreateCarbrand(global::System.Int32 carbrandID, global::System.String name, global::System.Int32 clicks)
         {
             Carbrand carbrand = new Carbrand();
-            carbrand.id = id;
-            carbrand.brand_name = brand_name;
-            carbrand.brandclicks = brandclicks;
+            carbrand.CarbrandID = carbrandID;
+            carbrand.Name = name;
+            carbrand.Clicks = clicks;
             return carbrand;
         }
 
@@ -265,75 +288,75 @@ namespace skabi.data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 id
+        public global::System.Int32 CarbrandID
         {
             get
             {
-                return _id;
+                return _CarbrandID;
             }
             set
             {
-                if (_id != value)
+                if (_CarbrandID != value)
                 {
-                    OnidChanging(value);
-                    ReportPropertyChanging("id");
-                    _id = StructuralObject.SetValidValue(value, "id");
-                    ReportPropertyChanged("id");
-                    OnidChanged();
+                    OnCarbrandIDChanging(value);
+                    ReportPropertyChanging("CarbrandID");
+                    _CarbrandID = StructuralObject.SetValidValue(value, "CarbrandID");
+                    ReportPropertyChanged("CarbrandID");
+                    OnCarbrandIDChanged();
                 }
             }
         }
-        private global::System.Int32 _id;
-        partial void OnidChanging(global::System.Int32 value);
-        partial void OnidChanged();
+        private global::System.Int32 _CarbrandID;
+        partial void OnCarbrandIDChanging(global::System.Int32 value);
+        partial void OnCarbrandIDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String brand_name
+        public global::System.String Name
         {
             get
             {
-                return _brand_name;
+                return _Name;
             }
             set
             {
-                Onbrand_nameChanging(value);
-                ReportPropertyChanging("brand_name");
-                _brand_name = StructuralObject.SetValidValue(value, false, "brand_name");
-                ReportPropertyChanged("brand_name");
-                Onbrand_nameChanged();
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
+                ReportPropertyChanged("Name");
+                OnNameChanged();
             }
         }
-        private global::System.String _brand_name;
-        partial void Onbrand_nameChanging(global::System.String value);
-        partial void Onbrand_nameChanged();
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 brandclicks
+        public global::System.Int32 Clicks
         {
             get
             {
-                return _brandclicks;
+                return _Clicks;
             }
             set
             {
-                OnbrandclicksChanging(value);
-                ReportPropertyChanging("brandclicks");
-                _brandclicks = StructuralObject.SetValidValue(value, "brandclicks");
-                ReportPropertyChanged("brandclicks");
-                OnbrandclicksChanged();
+                OnClicksChanging(value);
+                ReportPropertyChanging("Clicks");
+                _Clicks = StructuralObject.SetValidValue(value, "Clicks");
+                ReportPropertyChanged("Clicks");
+                OnClicksChanged();
             }
         }
-        private global::System.Int32 _brandclicks;
-        partial void OnbrandclicksChanging(global::System.Int32 value);
-        partial void OnbrandclicksChanged();
+        private global::System.Int32 _Clicks;
+        partial void OnClicksChanging(global::System.Int32 value);
+        partial void OnClicksChanged();
 
         #endregion
 
@@ -345,94 +368,18 @@ namespace skabi.data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("skabi.data.Models", "FK_carbrands_carbrands", "Carbrand1")]
-        public Carbrand Carbrands1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Carbrand>("skabi.data.Models.FK_carbrands_carbrands", "Carbrand1").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Carbrand>("skabi.data.Models.FK_carbrands_carbrands", "Carbrand1").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Carbrand> Carbrands1Reference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Carbrand>("skabi.data.Models.FK_carbrands_carbrands", "Carbrand1");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Carbrand>("skabi.data.Models.FK_carbrands_carbrands", "Carbrand1", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("skabi.data.Models", "FK_carbrands_carbrands", "Carbrand")]
-        public Carbrand Carbrand1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Carbrand>("skabi.data.Models.FK_carbrands_carbrands", "Carbrand").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Carbrand>("skabi.data.Models.FK_carbrands_carbrands", "Carbrand").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Carbrand> Carbrand1Reference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Carbrand>("skabi.data.Models.FK_carbrands_carbrands", "Carbrand");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Carbrand>("skabi.data.Models.FK_carbrands_carbrands", "Carbrand", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("skabi.data.Models", "FK_carmodels_carbrands", "Carmodel")]
+        [EdmRelationshipNavigationPropertyAttribute("skabi.data.Models", "FK_Carmodels_Carbrands", "Carmodel")]
         public EntityCollection<Carmodel> Carmodels
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Carmodel>("skabi.data.Models.FK_carmodels_carbrands", "Carmodel");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Carmodel>("skabi.data.Models.FK_Carmodels_Carbrands", "Carmodel");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Carmodel>("skabi.data.Models.FK_carmodels_carbrands", "Carmodel", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Carmodel>("skabi.data.Models.FK_Carmodels_Carbrands", "Carmodel", value);
                 }
             }
         }
@@ -454,17 +401,17 @@ namespace skabi.data
         /// <summary>
         /// Create a new Carmodel object.
         /// </summary>
-        /// <param name="id">Initial value of the id property.</param>
-        /// <param name="carbrand_id">Initial value of the carbrand_id property.</param>
-        /// <param name="model_name">Initial value of the model_name property.</param>
-        /// <param name="modelclicks">Initial value of the modelclicks property.</param>
-        public static Carmodel CreateCarmodel(global::System.Int32 id, global::System.Int32 carbrand_id, global::System.String model_name, global::System.Int32 modelclicks)
+        /// <param name="carmodelID">Initial value of the CarmodelID property.</param>
+        /// <param name="carbrandID">Initial value of the CarbrandID property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="clicks">Initial value of the Clicks property.</param>
+        public static Carmodel CreateCarmodel(global::System.Int32 carmodelID, global::System.Int32 carbrandID, global::System.String name, global::System.Int32 clicks)
         {
             Carmodel carmodel = new Carmodel();
-            carmodel.id = id;
-            carmodel.carbrand_id = carbrand_id;
-            carmodel.model_name = model_name;
-            carmodel.modelclicks = modelclicks;
+            carmodel.CarmodelID = carmodelID;
+            carmodel.CarbrandID = carbrandID;
+            carmodel.Name = name;
+            carmodel.Clicks = clicks;
             return carmodel;
         }
 
@@ -477,99 +424,99 @@ namespace skabi.data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 id
+        public global::System.Int32 CarmodelID
         {
             get
             {
-                return _id;
+                return _CarmodelID;
             }
             set
             {
-                if (_id != value)
+                if (_CarmodelID != value)
                 {
-                    OnidChanging(value);
-                    ReportPropertyChanging("id");
-                    _id = StructuralObject.SetValidValue(value, "id");
-                    ReportPropertyChanged("id");
-                    OnidChanged();
+                    OnCarmodelIDChanging(value);
+                    ReportPropertyChanging("CarmodelID");
+                    _CarmodelID = StructuralObject.SetValidValue(value, "CarmodelID");
+                    ReportPropertyChanged("CarmodelID");
+                    OnCarmodelIDChanged();
                 }
             }
         }
-        private global::System.Int32 _id;
-        partial void OnidChanging(global::System.Int32 value);
-        partial void OnidChanged();
+        private global::System.Int32 _CarmodelID;
+        partial void OnCarmodelIDChanging(global::System.Int32 value);
+        partial void OnCarmodelIDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 carbrand_id
+        public global::System.Int32 CarbrandID
         {
             get
             {
-                return _carbrand_id;
+                return _CarbrandID;
             }
             set
             {
-                Oncarbrand_idChanging(value);
-                ReportPropertyChanging("carbrand_id");
-                _carbrand_id = StructuralObject.SetValidValue(value, "carbrand_id");
-                ReportPropertyChanged("carbrand_id");
-                Oncarbrand_idChanged();
+                OnCarbrandIDChanging(value);
+                ReportPropertyChanging("CarbrandID");
+                _CarbrandID = StructuralObject.SetValidValue(value, "CarbrandID");
+                ReportPropertyChanged("CarbrandID");
+                OnCarbrandIDChanged();
             }
         }
-        private global::System.Int32 _carbrand_id;
-        partial void Oncarbrand_idChanging(global::System.Int32 value);
-        partial void Oncarbrand_idChanged();
+        private global::System.Int32 _CarbrandID;
+        partial void OnCarbrandIDChanging(global::System.Int32 value);
+        partial void OnCarbrandIDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String model_name
+        public global::System.String Name
         {
             get
             {
-                return _model_name;
+                return _Name;
             }
             set
             {
-                Onmodel_nameChanging(value);
-                ReportPropertyChanging("model_name");
-                _model_name = StructuralObject.SetValidValue(value, false, "model_name");
-                ReportPropertyChanged("model_name");
-                Onmodel_nameChanged();
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
+                ReportPropertyChanged("Name");
+                OnNameChanged();
             }
         }
-        private global::System.String _model_name;
-        partial void Onmodel_nameChanging(global::System.String value);
-        partial void Onmodel_nameChanged();
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 modelclicks
+        public global::System.Int32 Clicks
         {
             get
             {
-                return _modelclicks;
+                return _Clicks;
             }
             set
             {
-                OnmodelclicksChanging(value);
-                ReportPropertyChanging("modelclicks");
-                _modelclicks = StructuralObject.SetValidValue(value, "modelclicks");
-                ReportPropertyChanged("modelclicks");
-                OnmodelclicksChanged();
+                OnClicksChanging(value);
+                ReportPropertyChanging("Clicks");
+                _Clicks = StructuralObject.SetValidValue(value, "Clicks");
+                ReportPropertyChanged("Clicks");
+                OnClicksChanged();
             }
         }
-        private global::System.Int32 _modelclicks;
-        partial void OnmodelclicksChanging(global::System.Int32 value);
-        partial void OnmodelclicksChanged();
+        private global::System.Int32 _Clicks;
+        partial void OnClicksChanging(global::System.Int32 value);
+        partial void OnClicksChanged();
 
         #endregion
 
@@ -581,16 +528,16 @@ namespace skabi.data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("skabi.data.Models", "FK_carmodels_carbrands", "Carbrand")]
+        [EdmRelationshipNavigationPropertyAttribute("skabi.data.Models", "FK_Carmodels_Carbrands", "Carbrand")]
         public Carbrand Carbrand
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Carbrand>("skabi.data.Models.FK_carmodels_carbrands", "Carbrand").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Carbrand>("skabi.data.Models.FK_Carmodels_Carbrands", "Carbrand").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Carbrand>("skabi.data.Models.FK_carmodels_carbrands", "Carbrand").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Carbrand>("skabi.data.Models.FK_Carmodels_Carbrands", "Carbrand").Value = value;
             }
         }
         /// <summary>
@@ -602,13 +549,13 @@ namespace skabi.data
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Carbrand>("skabi.data.Models.FK_carmodels_carbrands", "Carbrand");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Carbrand>("skabi.data.Models.FK_Carmodels_Carbrands", "Carbrand");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Carbrand>("skabi.data.Models.FK_carmodels_carbrands", "Carbrand", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Carbrand>("skabi.data.Models.FK_Carmodels_Carbrands", "Carbrand", value);
                 }
             }
         }
@@ -619,18 +566,18 @@ namespace skabi.data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("skabi.data.Models", "FK_carmodeltypes_carmodels", "CarmodelType")]
+        [EdmRelationshipNavigationPropertyAttribute("skabi.data.Models", "FK_CarmodelType_Carmodel", "CarmodelType")]
         public EntityCollection<CarmodelType> CarmodelTypes
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CarmodelType>("skabi.data.Models.FK_carmodeltypes_carmodels", "CarmodelType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CarmodelType>("skabi.data.Models.FK_CarmodelType_Carmodel", "CarmodelType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CarmodelType>("skabi.data.Models.FK_carmodeltypes_carmodels", "CarmodelType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CarmodelType>("skabi.data.Models.FK_CarmodelType_Carmodel", "CarmodelType", value);
                 }
             }
         }
@@ -652,19 +599,19 @@ namespace skabi.data
         /// <summary>
         /// Create a new CarmodelType object.
         /// </summary>
-        /// <param name="id">Initial value of the id property.</param>
-        /// <param name="carmodel_id">Initial value of the carmodel_id property.</param>
-        /// <param name="wheelbase">Initial value of the wheelbase property.</param>
-        /// <param name="cubic">Initial value of the cubic property.</param>
-        /// <param name="typeclicks">Initial value of the typeclicks property.</param>
-        public static CarmodelType CreateCarmodelType(global::System.Int32 id, global::System.Int32 carmodel_id, global::System.Int32 wheelbase, global::System.String cubic, global::System.Int32 typeclicks)
+        /// <param name="carmodelTypeID">Initial value of the CarmodelTypeID property.</param>
+        /// <param name="carmodelID">Initial value of the CarmodelID property.</param>
+        /// <param name="wheelbase">Initial value of the Wheelbase property.</param>
+        /// <param name="cubic">Initial value of the Cubic property.</param>
+        /// <param name="clicks">Initial value of the Clicks property.</param>
+        public static CarmodelType CreateCarmodelType(global::System.Int32 carmodelTypeID, global::System.Int32 carmodelID, global::System.Int32 wheelbase, global::System.String cubic, global::System.Int32 clicks)
         {
             CarmodelType carmodelType = new CarmodelType();
-            carmodelType.id = id;
-            carmodelType.carmodel_id = carmodel_id;
-            carmodelType.wheelbase = wheelbase;
-            carmodelType.cubic = cubic;
-            carmodelType.typeclicks = typeclicks;
+            carmodelType.CarmodelTypeID = carmodelTypeID;
+            carmodelType.CarmodelID = carmodelID;
+            carmodelType.Wheelbase = wheelbase;
+            carmodelType.Cubic = cubic;
+            carmodelType.Clicks = clicks;
             return carmodelType;
         }
 
@@ -677,123 +624,123 @@ namespace skabi.data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 id
+        public global::System.Int32 CarmodelTypeID
         {
             get
             {
-                return _id;
+                return _CarmodelTypeID;
             }
             set
             {
-                if (_id != value)
+                if (_CarmodelTypeID != value)
                 {
-                    OnidChanging(value);
-                    ReportPropertyChanging("id");
-                    _id = StructuralObject.SetValidValue(value, "id");
-                    ReportPropertyChanged("id");
-                    OnidChanged();
+                    OnCarmodelTypeIDChanging(value);
+                    ReportPropertyChanging("CarmodelTypeID");
+                    _CarmodelTypeID = StructuralObject.SetValidValue(value, "CarmodelTypeID");
+                    ReportPropertyChanged("CarmodelTypeID");
+                    OnCarmodelTypeIDChanged();
                 }
             }
         }
-        private global::System.Int32 _id;
-        partial void OnidChanging(global::System.Int32 value);
-        partial void OnidChanged();
+        private global::System.Int32 _CarmodelTypeID;
+        partial void OnCarmodelTypeIDChanging(global::System.Int32 value);
+        partial void OnCarmodelTypeIDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 carmodel_id
+        public global::System.Int32 CarmodelID
         {
             get
             {
-                return _carmodel_id;
+                return _CarmodelID;
             }
             set
             {
-                Oncarmodel_idChanging(value);
-                ReportPropertyChanging("carmodel_id");
-                _carmodel_id = StructuralObject.SetValidValue(value, "carmodel_id");
-                ReportPropertyChanged("carmodel_id");
-                Oncarmodel_idChanged();
+                OnCarmodelIDChanging(value);
+                ReportPropertyChanging("CarmodelID");
+                _CarmodelID = StructuralObject.SetValidValue(value, "CarmodelID");
+                ReportPropertyChanged("CarmodelID");
+                OnCarmodelIDChanged();
             }
         }
-        private global::System.Int32 _carmodel_id;
-        partial void Oncarmodel_idChanging(global::System.Int32 value);
-        partial void Oncarmodel_idChanged();
+        private global::System.Int32 _CarmodelID;
+        partial void OnCarmodelIDChanging(global::System.Int32 value);
+        partial void OnCarmodelIDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 wheelbase
+        public global::System.Int32 Wheelbase
         {
             get
             {
-                return _wheelbase;
+                return _Wheelbase;
             }
             set
             {
-                OnwheelbaseChanging(value);
-                ReportPropertyChanging("wheelbase");
-                _wheelbase = StructuralObject.SetValidValue(value, "wheelbase");
-                ReportPropertyChanged("wheelbase");
-                OnwheelbaseChanged();
+                OnWheelbaseChanging(value);
+                ReportPropertyChanging("Wheelbase");
+                _Wheelbase = StructuralObject.SetValidValue(value, "Wheelbase");
+                ReportPropertyChanged("Wheelbase");
+                OnWheelbaseChanged();
             }
         }
-        private global::System.Int32 _wheelbase;
-        partial void OnwheelbaseChanging(global::System.Int32 value);
-        partial void OnwheelbaseChanged();
+        private global::System.Int32 _Wheelbase;
+        partial void OnWheelbaseChanging(global::System.Int32 value);
+        partial void OnWheelbaseChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String cubic
+        public global::System.String Cubic
         {
             get
             {
-                return _cubic;
+                return _Cubic;
             }
             set
             {
-                OncubicChanging(value);
-                ReportPropertyChanging("cubic");
-                _cubic = StructuralObject.SetValidValue(value, false, "cubic");
-                ReportPropertyChanged("cubic");
-                OncubicChanged();
+                OnCubicChanging(value);
+                ReportPropertyChanging("Cubic");
+                _Cubic = StructuralObject.SetValidValue(value, false, "Cubic");
+                ReportPropertyChanged("Cubic");
+                OnCubicChanged();
             }
         }
-        private global::System.String _cubic;
-        partial void OncubicChanging(global::System.String value);
-        partial void OncubicChanged();
+        private global::System.String _Cubic;
+        partial void OnCubicChanging(global::System.String value);
+        partial void OnCubicChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 typeclicks
+        public global::System.Int32 Clicks
         {
             get
             {
-                return _typeclicks;
+                return _Clicks;
             }
             set
             {
-                OntypeclicksChanging(value);
-                ReportPropertyChanging("typeclicks");
-                _typeclicks = StructuralObject.SetValidValue(value, "typeclicks");
-                ReportPropertyChanged("typeclicks");
-                OntypeclicksChanged();
+                OnClicksChanging(value);
+                ReportPropertyChanging("Clicks");
+                _Clicks = StructuralObject.SetValidValue(value, "Clicks");
+                ReportPropertyChanged("Clicks");
+                OnClicksChanged();
             }
         }
-        private global::System.Int32 _typeclicks;
-        partial void OntypeclicksChanging(global::System.Int32 value);
-        partial void OntypeclicksChanged();
+        private global::System.Int32 _Clicks;
+        partial void OnClicksChanging(global::System.Int32 value);
+        partial void OnClicksChanged();
 
         #endregion
 
@@ -805,16 +752,16 @@ namespace skabi.data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("skabi.data.Models", "FK_carmodeltypes_carmodels", "Carmodel")]
+        [EdmRelationshipNavigationPropertyAttribute("skabi.data.Models", "FK_CarmodelType_Carmodel", "Carmodel")]
         public Carmodel Carmodel
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Carmodel>("skabi.data.Models.FK_carmodeltypes_carmodels", "Carmodel").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Carmodel>("skabi.data.Models.FK_CarmodelType_Carmodel", "Carmodel").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Carmodel>("skabi.data.Models.FK_carmodeltypes_carmodels", "Carmodel").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Carmodel>("skabi.data.Models.FK_CarmodelType_Carmodel", "Carmodel").Value = value;
             }
         }
         /// <summary>
@@ -826,13 +773,13 @@ namespace skabi.data
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Carmodel>("skabi.data.Models.FK_carmodeltypes_carmodels", "Carmodel");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Carmodel>("skabi.data.Models.FK_CarmodelType_Carmodel", "Carmodel");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Carmodel>("skabi.data.Models.FK_carmodeltypes_carmodels", "Carmodel", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Carmodel>("skabi.data.Models.FK_CarmodelType_Carmodel", "Carmodel", value);
                 }
             }
         }
@@ -843,18 +790,18 @@ namespace skabi.data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("skabi.data.Models", "FK_carmodeltypes_proposals_carmodeltypes", "CarmodelTypesProposal")]
+        [EdmRelationshipNavigationPropertyAttribute("skabi.data.Models", "FK_CarmodelTypesProposal_CarmodelType", "CarmodelTypesProposal")]
         public EntityCollection<CarmodelTypesProposal> CarmodelTypesProposals
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CarmodelTypesProposal>("skabi.data.Models.FK_carmodeltypes_proposals_carmodeltypes", "CarmodelTypesProposal");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CarmodelTypesProposal>("skabi.data.Models.FK_CarmodelTypesProposal_CarmodelType", "CarmodelTypesProposal");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CarmodelTypesProposal>("skabi.data.Models.FK_carmodeltypes_proposals_carmodeltypes", "CarmodelTypesProposal", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CarmodelTypesProposal>("skabi.data.Models.FK_CarmodelTypesProposal_CarmodelType", "CarmodelTypesProposal", value);
                 }
             }
         }
@@ -876,21 +823,15 @@ namespace skabi.data
         /// <summary>
         /// Create a new CarmodelTypesProposal object.
         /// </summary>
-        /// <param name="id">Initial value of the id property.</param>
-        /// <param name="carmodeltype_id">Initial value of the carmodeltype_id property.</param>
-        /// <param name="proposal_id">Initial value of the proposal_id property.</param>
-        /// <param name="left_right">Initial value of the left_right property.</param>
-        /// <param name="uniqueclicks">Initial value of the uniqueclicks property.</param>
-        /// <param name="order_id">Initial value of the order_id property.</param>
-        public static CarmodelTypesProposal CreateCarmodelTypesProposal(global::System.Int32 id, global::System.Int32 carmodeltype_id, global::System.Int32 proposal_id, global::System.Int32 left_right, global::System.Int32 uniqueclicks, global::System.Int32 order_id)
+        /// <param name="carmodelTypeProposalID">Initial value of the CarmodelTypeProposalID property.</param>
+        /// <param name="carmodelTypeID">Initial value of the CarmodelTypeID property.</param>
+        /// <param name="proposalID">Initial value of the ProposalID property.</param>
+        public static CarmodelTypesProposal CreateCarmodelTypesProposal(global::System.Int32 carmodelTypeProposalID, global::System.Int32 carmodelTypeID, global::System.Int32 proposalID)
         {
             CarmodelTypesProposal carmodelTypesProposal = new CarmodelTypesProposal();
-            carmodelTypesProposal.id = id;
-            carmodelTypesProposal.carmodeltype_id = carmodeltype_id;
-            carmodelTypesProposal.proposal_id = proposal_id;
-            carmodelTypesProposal.left_right = left_right;
-            carmodelTypesProposal.uniqueclicks = uniqueclicks;
-            carmodelTypesProposal.order_id = order_id;
+            carmodelTypesProposal.CarmodelTypeProposalID = carmodelTypeProposalID;
+            carmodelTypesProposal.CarmodelTypeID = carmodelTypeID;
+            carmodelTypesProposal.ProposalID = proposalID;
             return carmodelTypesProposal;
         }
 
@@ -903,147 +844,81 @@ namespace skabi.data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 id
+        public global::System.Int32 CarmodelTypeProposalID
         {
             get
             {
-                return _id;
+                return _CarmodelTypeProposalID;
             }
             set
             {
-                if (_id != value)
+                if (_CarmodelTypeProposalID != value)
                 {
-                    OnidChanging(value);
-                    ReportPropertyChanging("id");
-                    _id = StructuralObject.SetValidValue(value, "id");
-                    ReportPropertyChanged("id");
-                    OnidChanged();
+                    OnCarmodelTypeProposalIDChanging(value);
+                    ReportPropertyChanging("CarmodelTypeProposalID");
+                    _CarmodelTypeProposalID = StructuralObject.SetValidValue(value, "CarmodelTypeProposalID");
+                    ReportPropertyChanged("CarmodelTypeProposalID");
+                    OnCarmodelTypeProposalIDChanged();
                 }
             }
         }
-        private global::System.Int32 _id;
-        partial void OnidChanging(global::System.Int32 value);
-        partial void OnidChanged();
+        private global::System.Int32 _CarmodelTypeProposalID;
+        partial void OnCarmodelTypeProposalIDChanging(global::System.Int32 value);
+        partial void OnCarmodelTypeProposalIDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 carmodeltype_id
+        public global::System.Int32 CarmodelTypeID
         {
             get
             {
-                return _carmodeltype_id;
+                return _CarmodelTypeID;
             }
             set
             {
-                Oncarmodeltype_idChanging(value);
-                ReportPropertyChanging("carmodeltype_id");
-                _carmodeltype_id = StructuralObject.SetValidValue(value, "carmodeltype_id");
-                ReportPropertyChanged("carmodeltype_id");
-                Oncarmodeltype_idChanged();
+                if (_CarmodelTypeID != value)
+                {
+                    OnCarmodelTypeIDChanging(value);
+                    ReportPropertyChanging("CarmodelTypeID");
+                    _CarmodelTypeID = StructuralObject.SetValidValue(value, "CarmodelTypeID");
+                    ReportPropertyChanged("CarmodelTypeID");
+                    OnCarmodelTypeIDChanged();
+                }
             }
         }
-        private global::System.Int32 _carmodeltype_id;
-        partial void Oncarmodeltype_idChanging(global::System.Int32 value);
-        partial void Oncarmodeltype_idChanged();
+        private global::System.Int32 _CarmodelTypeID;
+        partial void OnCarmodelTypeIDChanging(global::System.Int32 value);
+        partial void OnCarmodelTypeIDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 proposal_id
+        public global::System.Int32 ProposalID
         {
             get
             {
-                return _proposal_id;
+                return _ProposalID;
             }
             set
             {
-                Onproposal_idChanging(value);
-                ReportPropertyChanging("proposal_id");
-                _proposal_id = StructuralObject.SetValidValue(value, "proposal_id");
-                ReportPropertyChanged("proposal_id");
-                Onproposal_idChanged();
+                if (_ProposalID != value)
+                {
+                    OnProposalIDChanging(value);
+                    ReportPropertyChanging("ProposalID");
+                    _ProposalID = StructuralObject.SetValidValue(value, "ProposalID");
+                    ReportPropertyChanged("ProposalID");
+                    OnProposalIDChanged();
+                }
             }
         }
-        private global::System.Int32 _proposal_id;
-        partial void Onproposal_idChanging(global::System.Int32 value);
-        partial void Onproposal_idChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 left_right
-        {
-            get
-            {
-                return _left_right;
-            }
-            set
-            {
-                Onleft_rightChanging(value);
-                ReportPropertyChanging("left_right");
-                _left_right = StructuralObject.SetValidValue(value, "left_right");
-                ReportPropertyChanged("left_right");
-                Onleft_rightChanged();
-            }
-        }
-        private global::System.Int32 _left_right;
-        partial void Onleft_rightChanging(global::System.Int32 value);
-        partial void Onleft_rightChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 uniqueclicks
-        {
-            get
-            {
-                return _uniqueclicks;
-            }
-            set
-            {
-                OnuniqueclicksChanging(value);
-                ReportPropertyChanging("uniqueclicks");
-                _uniqueclicks = StructuralObject.SetValidValue(value, "uniqueclicks");
-                ReportPropertyChanged("uniqueclicks");
-                OnuniqueclicksChanged();
-            }
-        }
-        private global::System.Int32 _uniqueclicks;
-        partial void OnuniqueclicksChanging(global::System.Int32 value);
-        partial void OnuniqueclicksChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 order_id
-        {
-            get
-            {
-                return _order_id;
-            }
-            set
-            {
-                Onorder_idChanging(value);
-                ReportPropertyChanging("order_id");
-                _order_id = StructuralObject.SetValidValue(value, "order_id");
-                ReportPropertyChanged("order_id");
-                Onorder_idChanged();
-            }
-        }
-        private global::System.Int32 _order_id;
-        partial void Onorder_idChanging(global::System.Int32 value);
-        partial void Onorder_idChanged();
+        private global::System.Int32 _ProposalID;
+        partial void OnProposalIDChanging(global::System.Int32 value);
+        partial void OnProposalIDChanged();
 
         #endregion
 
@@ -1055,16 +930,16 @@ namespace skabi.data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("skabi.data.Models", "FK_carmodeltypes_proposals_carmodeltypes", "CarmodelType")]
+        [EdmRelationshipNavigationPropertyAttribute("skabi.data.Models", "FK_CarmodelTypesProposal_CarmodelType", "CarmodelType")]
         public CarmodelType CarmodelType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CarmodelType>("skabi.data.Models.FK_carmodeltypes_proposals_carmodeltypes", "CarmodelType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CarmodelType>("skabi.data.Models.FK_CarmodelTypesProposal_CarmodelType", "CarmodelType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CarmodelType>("skabi.data.Models.FK_carmodeltypes_proposals_carmodeltypes", "CarmodelType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CarmodelType>("skabi.data.Models.FK_CarmodelTypesProposal_CarmodelType", "CarmodelType").Value = value;
             }
         }
         /// <summary>
@@ -1076,13 +951,13 @@ namespace skabi.data
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CarmodelType>("skabi.data.Models.FK_carmodeltypes_proposals_carmodeltypes", "CarmodelType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CarmodelType>("skabi.data.Models.FK_CarmodelTypesProposal_CarmodelType", "CarmodelType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CarmodelType>("skabi.data.Models.FK_carmodeltypes_proposals_carmodeltypes", "CarmodelType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CarmodelType>("skabi.data.Models.FK_CarmodelTypesProposal_CarmodelType", "CarmodelType", value);
                 }
             }
         }
@@ -1093,16 +968,16 @@ namespace skabi.data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("skabi.data.Models", "FK_carmodeltypes_proposals_carmodeltypes_proposals", "Proposal")]
+        [EdmRelationshipNavigationPropertyAttribute("skabi.data.Models", "FK_CarmodelTypesProposals_Proposal", "Proposal")]
         public Proposal Proposal
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Proposal>("skabi.data.Models.FK_carmodeltypes_proposals_carmodeltypes_proposals", "Proposal").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Proposal>("skabi.data.Models.FK_CarmodelTypesProposals_Proposal", "Proposal").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Proposal>("skabi.data.Models.FK_carmodeltypes_proposals_carmodeltypes_proposals", "Proposal").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Proposal>("skabi.data.Models.FK_CarmodelTypesProposals_Proposal", "Proposal").Value = value;
             }
         }
         /// <summary>
@@ -1114,16 +989,96 @@ namespace skabi.data
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Proposal>("skabi.data.Models.FK_carmodeltypes_proposals_carmodeltypes_proposals", "Proposal");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Proposal>("skabi.data.Models.FK_CarmodelTypesProposals_Proposal", "Proposal");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Proposal>("skabi.data.Models.FK_carmodeltypes_proposals_carmodeltypes_proposals", "Proposal", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Proposal>("skabi.data.Models.FK_CarmodelTypesProposals_Proposal", "Proposal", value);
                 }
             }
         }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="skabi.data.Models", Name="Layout")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Layout : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Layout object.
+        /// </summary>
+        /// <param name="layoutID">Initial value of the LayoutID property.</param>
+        public static Layout CreateLayout(global::System.Int32 layoutID)
+        {
+            Layout layout = new Layout();
+            layout.LayoutID = layoutID;
+            return layout;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 LayoutID
+        {
+            get
+            {
+                return _LayoutID;
+            }
+            set
+            {
+                if (_LayoutID != value)
+                {
+                    OnLayoutIDChanging(value);
+                    ReportPropertyChanging("LayoutID");
+                    _LayoutID = StructuralObject.SetValidValue(value, "LayoutID");
+                    ReportPropertyChanged("LayoutID");
+                    OnLayoutIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _LayoutID;
+        partial void OnLayoutIDChanging(global::System.Int32 value);
+        partial void OnLayoutIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CarmodelTypesProposalID
+        {
+            get
+            {
+                return _CarmodelTypesProposalID;
+            }
+            set
+            {
+                OnCarmodelTypesProposalIDChanging(value);
+                ReportPropertyChanging("CarmodelTypesProposalID");
+                _CarmodelTypesProposalID = StructuralObject.SetValidValue(value, "CarmodelTypesProposalID");
+                ReportPropertyChanged("CarmodelTypesProposalID");
+                OnCarmodelTypesProposalIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CarmodelTypesProposalID;
+        partial void OnCarmodelTypesProposalIDChanging(Nullable<global::System.Int32> value);
+        partial void OnCarmodelTypesProposalIDChanged();
 
         #endregion
 
@@ -1256,23 +1211,23 @@ namespace skabi.data
         /// <summary>
         /// Create a new Proposal object.
         /// </summary>
-        /// <param name="id">Initial value of the id property.</param>
-        /// <param name="art_nr">Initial value of the art_nr property.</param>
-        /// <param name="width">Initial value of the width property.</param>
-        /// <param name="height">Initial value of the height property.</param>
-        /// <param name="depth">Initial value of the depth property.</param>
-        /// <param name="weight">Initial value of the weight property.</param>
-        /// <param name="proposalclicks">Initial value of the proposalclicks property.</param>
-        public static Proposal CreateProposal(global::System.Int32 id, global::System.String art_nr, global::System.String width, global::System.String height, global::System.String depth, global::System.String weight, global::System.Int32 proposalclicks)
+        /// <param name="proposalID">Initial value of the ProposalID property.</param>
+        /// <param name="artNr">Initial value of the ArtNr property.</param>
+        /// <param name="width">Initial value of the Width property.</param>
+        /// <param name="height">Initial value of the Height property.</param>
+        /// <param name="depth">Initial value of the Depth property.</param>
+        /// <param name="weight">Initial value of the Weight property.</param>
+        /// <param name="clicks">Initial value of the Clicks property.</param>
+        public static Proposal CreateProposal(global::System.Int32 proposalID, global::System.String artNr, global::System.String width, global::System.String height, global::System.String depth, global::System.String weight, global::System.Int32 clicks)
         {
             Proposal proposal = new Proposal();
-            proposal.id = id;
-            proposal.art_nr = art_nr;
-            proposal.width = width;
-            proposal.height = height;
-            proposal.depth = depth;
-            proposal.weight = weight;
-            proposal.proposalclicks = proposalclicks;
+            proposal.ProposalID = proposalID;
+            proposal.ArtNr = artNr;
+            proposal.Width = width;
+            proposal.Height = height;
+            proposal.Depth = depth;
+            proposal.Weight = weight;
+            proposal.Clicks = clicks;
             return proposal;
         }
 
@@ -1285,219 +1240,219 @@ namespace skabi.data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 id
+        public global::System.Int32 ProposalID
         {
             get
             {
-                return _id;
+                return _ProposalID;
             }
             set
             {
-                if (_id != value)
+                if (_ProposalID != value)
                 {
-                    OnidChanging(value);
-                    ReportPropertyChanging("id");
-                    _id = StructuralObject.SetValidValue(value, "id");
-                    ReportPropertyChanged("id");
-                    OnidChanged();
+                    OnProposalIDChanging(value);
+                    ReportPropertyChanging("ProposalID");
+                    _ProposalID = StructuralObject.SetValidValue(value, "ProposalID");
+                    ReportPropertyChanged("ProposalID");
+                    OnProposalIDChanged();
                 }
             }
         }
-        private global::System.Int32 _id;
-        partial void OnidChanging(global::System.Int32 value);
-        partial void OnidChanged();
+        private global::System.Int32 _ProposalID;
+        partial void OnProposalIDChanging(global::System.Int32 value);
+        partial void OnProposalIDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String art_nr
+        public global::System.String ArtNr
         {
             get
             {
-                return _art_nr;
+                return _ArtNr;
             }
             set
             {
-                Onart_nrChanging(value);
-                ReportPropertyChanging("art_nr");
-                _art_nr = StructuralObject.SetValidValue(value, false, "art_nr");
-                ReportPropertyChanged("art_nr");
-                Onart_nrChanged();
+                OnArtNrChanging(value);
+                ReportPropertyChanging("ArtNr");
+                _ArtNr = StructuralObject.SetValidValue(value, false, "ArtNr");
+                ReportPropertyChanged("ArtNr");
+                OnArtNrChanged();
             }
         }
-        private global::System.String _art_nr;
-        partial void Onart_nrChanging(global::System.String value);
-        partial void Onart_nrChanged();
+        private global::System.String _ArtNr;
+        partial void OnArtNrChanging(global::System.String value);
+        partial void OnArtNrChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String width
+        public global::System.String Width
         {
             get
             {
-                return _width;
+                return _Width;
             }
             set
             {
-                OnwidthChanging(value);
-                ReportPropertyChanging("width");
-                _width = StructuralObject.SetValidValue(value, false, "width");
-                ReportPropertyChanged("width");
-                OnwidthChanged();
+                OnWidthChanging(value);
+                ReportPropertyChanging("Width");
+                _Width = StructuralObject.SetValidValue(value, false, "Width");
+                ReportPropertyChanged("Width");
+                OnWidthChanged();
             }
         }
-        private global::System.String _width;
-        partial void OnwidthChanging(global::System.String value);
-        partial void OnwidthChanged();
+        private global::System.String _Width;
+        partial void OnWidthChanging(global::System.String value);
+        partial void OnWidthChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String height
+        public global::System.String Height
         {
             get
             {
-                return _height;
+                return _Height;
             }
             set
             {
-                OnheightChanging(value);
-                ReportPropertyChanging("height");
-                _height = StructuralObject.SetValidValue(value, false, "height");
-                ReportPropertyChanged("height");
-                OnheightChanged();
+                OnHeightChanging(value);
+                ReportPropertyChanging("Height");
+                _Height = StructuralObject.SetValidValue(value, false, "Height");
+                ReportPropertyChanged("Height");
+                OnHeightChanged();
             }
         }
-        private global::System.String _height;
-        partial void OnheightChanging(global::System.String value);
-        partial void OnheightChanged();
+        private global::System.String _Height;
+        partial void OnHeightChanging(global::System.String value);
+        partial void OnHeightChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String depth
+        public global::System.String Depth
         {
             get
             {
-                return _depth;
+                return _Depth;
             }
             set
             {
-                OndepthChanging(value);
-                ReportPropertyChanging("depth");
-                _depth = StructuralObject.SetValidValue(value, false, "depth");
-                ReportPropertyChanged("depth");
-                OndepthChanged();
+                OnDepthChanging(value);
+                ReportPropertyChanging("Depth");
+                _Depth = StructuralObject.SetValidValue(value, false, "Depth");
+                ReportPropertyChanged("Depth");
+                OnDepthChanged();
             }
         }
-        private global::System.String _depth;
-        partial void OndepthChanging(global::System.String value);
-        partial void OndepthChanged();
+        private global::System.String _Depth;
+        partial void OnDepthChanging(global::System.String value);
+        partial void OnDepthChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String weight
+        public global::System.String Weight
         {
             get
             {
-                return _weight;
+                return _Weight;
             }
             set
             {
-                OnweightChanging(value);
-                ReportPropertyChanging("weight");
-                _weight = StructuralObject.SetValidValue(value, false, "weight");
-                ReportPropertyChanged("weight");
-                OnweightChanged();
+                OnWeightChanging(value);
+                ReportPropertyChanging("Weight");
+                _Weight = StructuralObject.SetValidValue(value, false, "Weight");
+                ReportPropertyChanged("Weight");
+                OnWeightChanged();
             }
         }
-        private global::System.String _weight;
-        partial void OnweightChanging(global::System.String value);
-        partial void OnweightChanged();
+        private global::System.String _Weight;
+        partial void OnWeightChanging(global::System.String value);
+        partial void OnWeightChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String price
+        public global::System.String Price
         {
             get
             {
-                return _price;
+                return _Price;
             }
             set
             {
-                OnpriceChanging(value);
-                ReportPropertyChanging("price");
-                _price = StructuralObject.SetValidValue(value, true, "price");
-                ReportPropertyChanged("price");
-                OnpriceChanged();
+                OnPriceChanging(value);
+                ReportPropertyChanging("Price");
+                _Price = StructuralObject.SetValidValue(value, true, "Price");
+                ReportPropertyChanged("Price");
+                OnPriceChanged();
             }
         }
-        private global::System.String _price;
-        partial void OnpriceChanging(global::System.String value);
-        partial void OnpriceChanged();
+        private global::System.String _Price;
+        partial void OnPriceChanging(global::System.String value);
+        partial void OnPriceChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String price_installed
+        public global::System.String PriceInstalled
         {
             get
             {
-                return _price_installed;
+                return _PriceInstalled;
             }
             set
             {
-                Onprice_installedChanging(value);
-                ReportPropertyChanging("price_installed");
-                _price_installed = StructuralObject.SetValidValue(value, true, "price_installed");
-                ReportPropertyChanged("price_installed");
-                Onprice_installedChanged();
+                OnPriceInstalledChanging(value);
+                ReportPropertyChanging("PriceInstalled");
+                _PriceInstalled = StructuralObject.SetValidValue(value, true, "PriceInstalled");
+                ReportPropertyChanged("PriceInstalled");
+                OnPriceInstalledChanged();
             }
         }
-        private global::System.String _price_installed;
-        partial void Onprice_installedChanging(global::System.String value);
-        partial void Onprice_installedChanged();
+        private global::System.String _PriceInstalled;
+        partial void OnPriceInstalledChanging(global::System.String value);
+        partial void OnPriceInstalledChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 proposalclicks
+        public global::System.Int32 Clicks
         {
             get
             {
-                return _proposalclicks;
+                return _Clicks;
             }
             set
             {
-                OnproposalclicksChanging(value);
-                ReportPropertyChanging("proposalclicks");
-                _proposalclicks = StructuralObject.SetValidValue(value, "proposalclicks");
-                ReportPropertyChanged("proposalclicks");
-                OnproposalclicksChanged();
+                OnClicksChanging(value);
+                ReportPropertyChanging("Clicks");
+                _Clicks = StructuralObject.SetValidValue(value, "Clicks");
+                ReportPropertyChanged("Clicks");
+                OnClicksChanged();
             }
         }
-        private global::System.Int32 _proposalclicks;
-        partial void OnproposalclicksChanging(global::System.Int32 value);
-        partial void OnproposalclicksChanged();
+        private global::System.Int32 _Clicks;
+        partial void OnClicksChanging(global::System.Int32 value);
+        partial void OnClicksChanged();
 
         #endregion
 
@@ -1509,18 +1464,18 @@ namespace skabi.data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("skabi.data.Models", "FK_carmodeltypes_proposals_carmodeltypes_proposals", "CarmodelTypesProposal")]
+        [EdmRelationshipNavigationPropertyAttribute("skabi.data.Models", "FK_CarmodelTypesProposals_Proposal", "CarmodelTypesProposal")]
         public EntityCollection<CarmodelTypesProposal> CarmodelTypesProposals
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CarmodelTypesProposal>("skabi.data.Models.FK_carmodeltypes_proposals_carmodeltypes_proposals", "CarmodelTypesProposal");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CarmodelTypesProposal>("skabi.data.Models.FK_CarmodelTypesProposals_Proposal", "CarmodelTypesProposal");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CarmodelTypesProposal>("skabi.data.Models.FK_carmodeltypes_proposals_carmodeltypes_proposals", "CarmodelTypesProposal", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CarmodelTypesProposal>("skabi.data.Models.FK_CarmodelTypesProposals_Proposal", "CarmodelTypesProposal", value);
                 }
             }
         }

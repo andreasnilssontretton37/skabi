@@ -28,7 +28,7 @@ namespace skabi.web.mvc4.Controllers
             var homeViewModel = new HomeViewModel();
             homeViewModel.Carbrands = brands;
             homeViewModel.News = _newsService.GetTopFiveNews();
-            homeViewModel.LatestProposals = _rpdbService.GetLatestProposals(4);
+            homeViewModel.LatestProposals =  _rpdbService.GetLatestProposals(4);
             return View(homeViewModel);
         }
 

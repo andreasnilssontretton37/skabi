@@ -66,6 +66,12 @@ namespace skabi.data.DomainModel
         }
         private ObjectSet<CarmodelTypesProposal> _carmodelTypesProposals;
     
+        public ObjectSet<Layout> Layouts
+        {
+            get { return _layouts  ?? (_layouts = CreateObjectSet<Layout>("Layouts")); }
+        }
+        private ObjectSet<Layout> _layouts;
+    
         public ObjectSet<News> News
         {
             get { return _news  ?? (_news = CreateObjectSet<News>("News")); }

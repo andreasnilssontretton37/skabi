@@ -26,9 +26,9 @@
                             <tr>
                                 <td align="center">
                                     <div style="text-align: left; font-size: 12px;">
-                                        @proposal.CarmodelTypesProposals.Last().CarmodelType.Carmodel.model_name
+                                        @proposal.CarmodelTypesProposals.First().CarmodelType.Carmodel.Name
                                         <br />
-                                        Axelavstånd @proposal.CarmodelTypesProposals.Last().CarmodelType.wheelbase mm @proposal.CarmodelTypesProposals.Last().CarmodelType.cubic m3
+                                        Axelavstånd @proposal.CarmodelTypesProposals.First().CarmodelType.Wheelbase mm @proposal.CarmodelTypesProposals.LastOrDefault().CarmodelType.Cubic m3
                                     </div>
                                 </td>
                             </tr>
