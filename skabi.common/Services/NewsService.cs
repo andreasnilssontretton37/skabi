@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using skabi.data.DomainModel;
 using skabi.data.Repository;
 using skabi.data.Repository.Interfaces;
@@ -22,6 +23,16 @@ namespace skabi.common.Services
         public IEnumerable<News> GetTopFiveNews()
         {
             return _newsRepository.GetTopFiveNews();
+        }
+
+        public News Add(News item)
+        {
+            if (string.IsNullOrEmpty(item.text))
+            {
+                throw new ArgumentNullException();
+            }
+
+            return new News();
         }
     }
 }

@@ -70,11 +70,13 @@ namespace skabi.web.mvc4.App_Start
                   .InRequestScope()
                   .WithConstructorArgument("connectionString",
                                            WebConfigurationManager.ConnectionStrings["rpdbEntities"].ToString());
-
+           
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
             kernel.Bind<ICarbrandRepository>().To<CarbrandRepository>().InRequestScope();
+            kernel.Bind<ICarmodelRepository>().To<CarmodelRepository>().InRequestScope();
             kernel.Bind<INewsRepository>().To<NewsRepository>().InRequestScope();
             kernel.Bind<IProposalRepository>().To<ProposalRepository>().InRequestScope();
+            kernel.Bind<ICarmodelTypeRepository>().To<CarmodelTypeRepository>().InRequestScope();
             
 
             kernel.Bind<INewsService>().To<NewsService>().InRequestScope();

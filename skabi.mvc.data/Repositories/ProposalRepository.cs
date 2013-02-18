@@ -14,7 +14,7 @@ namespace skabi.data.Repository
         public IEnumerable<Proposal> GetLatestProposals(int numberOf)
         {
             //return _objectSet.OrderByDescending(proposal => proposal.ProposalID).Take(numberOf);
-
+            
             var list = _objectSet.Where(proposal => proposal.CarmodelTypesProposals.Any())
                                  .OrderByDescending(proposal => proposal.ProposalID)
                                  .Take(4);

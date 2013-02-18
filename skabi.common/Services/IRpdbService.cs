@@ -7,5 +7,10 @@ namespace skabi.common.Services
     {
         IEnumerable<Carbrand> GetAllCarbrands();
         IEnumerable<Proposal> GetLatestProposals(int numberOf);
+        IEnumerable<Carmodel> GetCarbrandModels(int carbrandId);
+        IEnumerable<Carmodel> GetCarbrandModels(string carbrandName);
+        IEnumerable<Carmodel> GetAllCarmodels();
+        IEnumerable<CarmodelType> GetCarmodelTypesForModel(int carmodelId);
+        IEnumerable<CarmodelType> GetCarmodelTypesForModel(string carmodelName);
     }
 }

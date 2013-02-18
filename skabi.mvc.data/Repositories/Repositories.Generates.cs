@@ -36,7 +36,7 @@ namespace skabi.data.Repository
  
         #region Ctor
  
-        public Repository(ObjectContext context)
+        public Repository(IObjectContext context)
         {
               _objectSet = context.CreateObjectSet<T>();
         }
@@ -76,7 +76,7 @@ namespace skabi.data.Repository
     {
         #region Ctor
  
-        public CarbrandRepository(ObjectContext context)
+        public CarbrandRepository(IObjectContext context)
                : base(context)
         {
         }
@@ -98,7 +98,7 @@ namespace skabi.data.Repository
     {
         #region Ctor
  
-        public CarmodelRepository(ObjectContext context)
+        public CarmodelRepository(IObjectContext context)
                : base(context)
         {
         }
@@ -120,7 +120,7 @@ namespace skabi.data.Repository
     {
         #region Ctor
  
-        public CarmodelTypeRepository(ObjectContext context)
+        public CarmodelTypeRepository(IObjectContext context)
                : base(context)
         {
         }
@@ -142,7 +142,7 @@ namespace skabi.data.Repository
     {
         #region Ctor
  
-        public CarmodelTypesProposalRepository(ObjectContext context)
+        public CarmodelTypesProposalRepository(IObjectContext context)
                : base(context)
         {
         }
@@ -153,7 +153,7 @@ namespace skabi.data.Repository
  
         public override CarmodelTypesProposal GetById(int id)   
         {
-            return _objectSet.SingleOrDefault(e => e.CarmodelTypeID == id);
+            return _objectSet.SingleOrDefault(e => e.CarmodelTypeProposalID == id);
         }
  
         #endregion        
@@ -164,7 +164,7 @@ namespace skabi.data.Repository
     {
         #region Ctor
  
-        public LayoutRepository(ObjectContext context)
+        public LayoutRepository(IObjectContext context)
                : base(context)
         {
         }
@@ -186,7 +186,7 @@ namespace skabi.data.Repository
     {
         #region Ctor
  
-        public NewsRepository(ObjectContext context)
+        public NewsRepository(IObjectContext context)
                : base(context)
         {
         }
@@ -208,7 +208,7 @@ namespace skabi.data.Repository
     {
         #region Ctor
  
-        public ProposalRepository(ObjectContext context)
+        public ProposalRepository(IObjectContext context)
                : base(context)
         {
         }
@@ -252,7 +252,7 @@ namespace skabi.data.Repository
   {
     #region Members
  
-    private readonly ObjectContext _context;
+    private readonly IObjectContext _context;
         private CarbrandRepository _carbrands;
         private CarmodelRepository _carmodels;
         private CarmodelTypeRepository _carmodeltypes;
@@ -265,7 +265,7 @@ namespace skabi.data.Repository
  
     #region Ctor
  
-    public UnitOfWork(ObjectContext context)
+    public UnitOfWork(IObjectContext context)
     {
       if (context == null)
       {

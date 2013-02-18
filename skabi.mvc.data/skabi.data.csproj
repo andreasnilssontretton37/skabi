@@ -65,11 +65,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\ICarmodelTypeRepository.cs" />
+    <Compile Include="Interfaces\ICarmodelRepository.cs" />
     <Compile Include="Interfaces\INewsRepository.cs" />
     <Compile Include="Interfaces\IProposalRepository.cs" />
     <Compile Include="Repositories\CarbrandRepository.cs" />
     <Compile Include="Interfaces\ICarbrandRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CarmodelRepository.cs" />
+    <Compile Include="Repositories\CarmodelTypeRepository.cs" />
     <Compile Include="Repositories\ProposalRepository.cs" />
     <Compile Include="Repositories\NewsRepository.cs" />
     <Compile Include="Repositories\Repositories.Generates.cs">

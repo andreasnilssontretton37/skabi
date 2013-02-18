@@ -13,7 +13,7 @@ using System.Data.EntityClient;
 
 namespace skabi.data.DomainModel
 {
-    public partial class rpdbEntities : ObjectContext
+    public partial class rpdbEntities : ObjectContext, IObjectContext
     {
         public const string ConnectionString = "name=rpdbEntities";
         public const string ContainerName = "rpdbEntities";
@@ -40,51 +40,61 @@ namespace skabi.data.DomainModel
     
         #endregion
     
-        #region ObjectSet Properties
+        #region IObjectSet Properties
     
-        public ObjectSet<Carbrand> Carbrands
+        public IObjectSet<Carbrand> Carbrands
         {
             get { return _carbrands  ?? (_carbrands = CreateObjectSet<Carbrand>("Carbrands")); }
         }
-        private ObjectSet<Carbrand> _carbrands;
+        private IObjectSet<Carbrand> _carbrands;
     
-        public ObjectSet<Carmodel> Carmodels
+        public IObjectSet<Carmodel> Carmodels
         {
             get { return _carmodels  ?? (_carmodels = CreateObjectSet<Carmodel>("Carmodels")); }
         }
-        private ObjectSet<Carmodel> _carmodels;
+        private IObjectSet<Carmodel> _carmodels;
     
-        public ObjectSet<CarmodelType> CarmodelTypes
+        public IObjectSet<CarmodelType> CarmodelTypes
         {
             get { return _carmodelTypes  ?? (_carmodelTypes = CreateObjectSet<CarmodelType>("CarmodelTypes")); }
         }
-        private ObjectSet<CarmodelType> _carmodelTypes;
+        private IObjectSet<CarmodelType> _carmodelTypes;
     
-        public ObjectSet<CarmodelTypesProposal> CarmodelTypesProposals
+        public IObjectSet<CarmodelTypesProposal> CarmodelTypesProposals
         {
             get { return _carmodelTypesProposals  ?? (_carmodelTypesProposals = CreateObjectSet<CarmodelTypesProposal>("CarmodelTypesProposals")); }
         }
-        private ObjectSet<CarmodelTypesProposal> _carmodelTypesProposals;
+        private IObjectSet<CarmodelTypesProposal> _carmodelTypesProposals;
     
-        public ObjectSet<Layout> Layouts
+        public IObjectSet<Layout> Layouts
         {
             get { return _layouts  ?? (_layouts = CreateObjectSet<Layout>("Layouts")); }
         }
-        private ObjectSet<Layout> _layouts;
+        private IObjectSet<Layout> _layouts;
     
-        public ObjectSet<News> News
+        public IObjectSet<News> News
         {
             get { return _news  ?? (_news = CreateObjectSet<News>("News")); }
         }
-        private ObjectSet<News> _news;
+        private IObjectSet<News> _news;
     
-        public ObjectSet<Proposal> Proposals
+        public IObjectSet<Proposal> Proposals
         {
             get { return _proposals  ?? (_proposals = CreateObjectSet<Proposal>("Proposals")); }
         }
-        private ObjectSet<Proposal> _proposals;
+        private IObjectSet<Proposal> _proposals;
 
         #endregion
 
+    public new IObjectSet<T> CreateObjectSet<T>() where T : class
+    {
+        return base.CreateObjectSet<T>();
+    }
+    
+    public new IObjectSet<T> CreateObjectSet<T>(string name) where T : class
+    {
+        return base.CreateObjectSet<T>(name);
+    }
+    
     }
 }

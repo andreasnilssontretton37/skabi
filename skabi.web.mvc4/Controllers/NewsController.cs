@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using skabi.common.Services;
 using skabi.common.ViewModels;
+using skabi.data.DomainModel;
 
 namespace skabi.web.mvc4.Controllers
 {
@@ -26,5 +28,21 @@ namespace skabi.web.mvc4.Controllers
             return View();
         }
 
+        public ActionResult Put(News item)
+        {
+            try
+            {
+                var newItem = this._rpdbService.Add(item);
+                return new JsonResult
+                    {
+                        Data = newItem
+                    };
+            }
+            catch (ArgumentNullException)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            
+        }
     }
 }

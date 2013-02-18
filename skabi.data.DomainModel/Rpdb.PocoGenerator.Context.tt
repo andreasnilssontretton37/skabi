@@ -52,7 +52,7 @@ namespace <#=code.EscapeNamespace(namespaceName)#>
     PushIndent(CodeRegion.GetIndent(1));
 }
 #>
-<#=Accessibility.ForType(container)#> partial class <#=code.Escape(container)#> : ObjectContext
+<#=Accessibility.ForType(container)#> partial class <#=code.Escape(container)#> : ObjectContext, IObjectContext
 {
     public const string ConnectionString = "name=<#=container.Name#>";
     public const string ContainerName = "<#=container.Name#>";
@@ -86,17 +86,17 @@ namespace <#=code.EscapeNamespace(namespaceName)#>
     #endregion
 
 <#
-        region.Begin("ObjectSet Properties", 2);
+        region.Begin("IObjectSet Properties", 2);
 
         foreach (EntitySet entitySet in container.BaseEntitySets.OfType<EntitySet>())
         {
 #>
 
-    <#=Accessibility.ForReadOnlyProperty(entitySet)#> ObjectSet<<#=code.Escape(entitySet.ElementType)#>> <#=code.Escape(entitySet)#>
+    <#=Accessibility.ForReadOnlyProperty(entitySet)#> IObjectSet<<#=code.Escape(entitySet.ElementType)#>> <#=code.Escape(entitySet)#>
     {
         get { return <#=code.FieldName(entitySet) #>  ?? (<#=code.FieldName(entitySet)#> = CreateObjectSet<<#=code.Escape(entitySet.ElementType)#>>("<#=entitySet.Name#>")); }
     }
-    private ObjectSet<<#=code.Escape(entitySet.ElementType)#>> <#=code.FieldName(entitySet)#>;
+    private IObjectSet<<#=code.Escape(entitySet.ElementType)#>> <#=code.FieldName(entitySet)#>;
 <#
         }
 
@@ -145,8 +145,18 @@ namespace <#=code.EscapeNamespace(namespaceName)#>
         }
 
         region.End();
-
+		
 #>
+public new IObjectSet<T> CreateObjectSet<T>() where T : class
+{
+    return base.CreateObjectSet<T>();
+}
+
+public new IObjectSet<T> CreateObjectSet<T>(string name) where T : class
+{
+    return base.CreateObjectSet<T>(name);
+}
+
 }
 <#
 if (!String.IsNullOrEmpty(namespaceName))
